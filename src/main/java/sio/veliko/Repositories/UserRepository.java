@@ -53,6 +53,7 @@ public class UserRepository implements RepositoryInterface{
         }
         return user;
     }
+
     public void bloquerUser(int idUser) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET is_blocked = true WHERE id = ?");
        preparedStatement.setInt(1,idUser);

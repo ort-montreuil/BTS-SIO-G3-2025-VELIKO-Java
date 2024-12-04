@@ -38,6 +38,7 @@
                   <TableColumn fx:id="tcPrenom" prefWidth="154.00001525878906" text="PRENOM" />
                   <TableColumn fx:id="tcEmail" prefWidth="189.33331298828125" text="EMAIL" />
                   <TableColumn fx:id="tcBloquer" prefWidth="189.33331298828125" text="BLOQUER" />
+
               </columns>
             </TableView>
             <Button fx:id="btnSupprimer" layoutX="258.0" layoutY="250.0" mnemonicParsing="false" onMouseClicked="#btnSupprimerClicked" text="supprimer" />

@@ -30,6 +30,7 @@ public class User {
         return nomUser;
     }
 
+
     public void setNomUser(String nomUser) {
         this.nomUser = nomUser;
     }

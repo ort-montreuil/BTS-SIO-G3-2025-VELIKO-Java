@@ -127,6 +127,7 @@ public class GestionUserController implements Initializable {
 
 
 
+
     @javafx.fxml.FXML
     public void btnSupprimerClicked(Event event) {
     }
