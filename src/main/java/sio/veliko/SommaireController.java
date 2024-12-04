@@ -1,4 +1,4 @@
-package sio.veliko.Controller;
+package sio.veliko;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +34,10 @@ public class SommaireController {
             stage.setTitle("Administrateur");
             stage.setScene(scene);
             stage.show();
-        } else if (actionEvent.getSource() == btnUser) {
-            FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("user-view.fxml"));
+
+        }
+        if (actionEvent.getSource() == btnUser) {
+            FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("gestionuser-view.fxml"));
             Scene scene = null;
             try {
                 scene = new Scene(fxmlLoader.load());
@@ -46,8 +48,9 @@ public class SommaireController {
             stage.setTitle("Administrateur");
             stage.setScene(scene);
             stage.show();
+
         }
-        else if (actionEvent.getSource() == btnDashboard) {
+        if (actionEvent.getSource() == btnDashboard) {
 
         }
     }

@@ -1,4 +1,4 @@
-package sio.veliko.Controller;
+package sio.veliko;
 
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
