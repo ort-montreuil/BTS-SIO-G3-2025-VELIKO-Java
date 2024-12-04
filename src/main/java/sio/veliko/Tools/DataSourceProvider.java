@@ -13,7 +13,7 @@ public class DataSourceProvider {
         String pilote = "com.mysql.cj.jdbc.Driver";
         Class.forName(pilote);
         cnx = DriverManager.getConnection("jdbc:mysql://localhost/app_db?serverTimezone="
-                + TimeZone.getDefault().getID(), "root", "");
+                + TimeZone.getDefault().getID(), "root", "root");
     }
     public static Connection getCnx() {
         return cnx;

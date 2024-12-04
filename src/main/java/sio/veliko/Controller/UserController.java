@@ -1,28 +1,17 @@
 package sio.veliko.Controller;
 
-import javafx.event.Event;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
+import sio.veliko.services.UserServices;
+
+import java.sql.SQLException;
 
 public class UserController {
-    @javafx.fxml.FXML
-    private Button btnBloquer;
-    @javafx.fxml.FXML
-    private TableView tvUser;
-    @javafx.fxml.FXML
-    private Button btnModifier;
-    @javafx.fxml.FXML
-    private Button btnSupprimer;
+    private UserServices userServices;
 
-    @javafx.fxml.FXML
-    public void btnBloquerClicked(Event event) {
+    public UserController() {
+        this.userServices = new UserServices();
     }
 
-    @javafx.fxml.FXML
-    public void btnSupprimerClicked(Event event) {
-    }
-
-    @javafx.fxml.FXML
-    public void btnModifierClicked(Event event) {
+    public Boolean verifierIdentifiants(String email, String password) throws SQLException {
+        return userServices.verifierIdentifiants(email, password);
     }
 }
