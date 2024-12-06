@@ -13,6 +13,10 @@ public class UserController {
     public UserController(){
         this.userService = new UserService();
     }
+
+    public Boolean verifierIdentifiants(String email, String enteredPassword) throws SQLException {
+        return userService.verifierIdentifiants(email,enteredPassword);
+    }
     public ArrayList<User> getAll() throws SQLException
     {
          return userService.getAll();

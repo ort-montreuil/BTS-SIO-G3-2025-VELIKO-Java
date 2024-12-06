@@ -2,6 +2,7 @@ package sio.veliko.Repositories;
 
 import sio.veliko.Models.User;
 import sio.veliko.Tools.DataSourceProvider;
+import sio.veliko.Tools.MdpHasher;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,6 +41,23 @@ public class UserRepository implements RepositoryInterface<User,Integer>{
     @Override
     public User get(Integer integer) {
         return null;
+    }
+
+    public Boolean verifierIdentifiants(String email, String enteredPassword) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("SELECT email, password FROM user WHERE roles = '[\"ROLE_ADMIN\"]' AND email = ?");;
+        ps.setString(1, email);
+        boolean result = false;
+        ResultSet rs = ps.executeQuery();
+        MdpHasher passwordHasher = new MdpHasher();
+        while (rs.next()) {
+            if (passwordHasher.verifyPassword(rs.getString("password"), enteredPassword) && rs.getString("email").equals(email)) {
+                result = true;
+            }
+
+        }
+        ps.close();
+        rs.close();
+        return result;
     }
 
     @Override

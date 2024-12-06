@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.VelikoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.VelikoController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,23 +19,29 @@
                   <Image url="@../../Image/Capture d'écran 2024-11-14 231038.png" />
                </image>
             </ImageView>
-            <Label prefHeight="141.0" prefWidth="609.0" style="-fx-border-color: white;" text="    Espace Administrateur : Connexion" textFill="#3e5ca4">
+            <Label prefHeight="100.0" prefWidth="639.0" style="-fx-border-color: white;" text="               Espace Administrateur : Connexion" textFill="#3e5ca4">
                <font>
                   <Font size="26.0" />
                </font>
-            </Label>
+             </Label>
          </children>
       </HBox>
    </top>
    <left>
-      <AnchorPane prefHeight="300.0" prefWidth="601.0" style="-fx-border-color: blue;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="428.0" prefWidth="790.0" style="-fx-border-color: blue;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="108.0" layoutY="61.0" text="Login : " />
-            <Label layoutX="108.0" layoutY="116.0" text="Mot de passe : " />
-            <TextField fx:id="txtLogin" layoutX="202.0" layoutY="57.0" prefHeight="25.0" prefWidth="210.0" style="-fx-border-color: blue; -fx-background-color: white;" />
-            <Label fx:id="txtErreur" layoutX="114.0" layoutY="175.0" prefHeight="28.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: blue;" />
-            <Button fx:id="btnConnexion" layoutX="116.0" layoutY="230.0" mnemonicParsing="false" onMouseClicked="#btnConnexionClicked" prefHeight="36.0" prefWidth="309.0" style="-fx-border-color: blue; -fx-background-color: white;" text="Se connecter " />
-            <PasswordField fx:id="txtMotDePasse" layoutX="203.0" layoutY="112.0" prefHeight="26.0" prefWidth="210.0" />
+            <Label layoutX="261.0" layoutY="61.0" text="Login : ">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+            <Label layoutX="253.0" layoutY="102.0" text="Mot de passe : ">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="txtLogin" layoutX="393.0" layoutY="62.0" prefHeight="25.0" prefWidth="210.0" style="-fx-border-color: blue; -fx-background-color: white;" />
+            <TextField fx:id="txtMotDePasse" layoutX="393.0" layoutY="102.0" prefHeight="25.0" prefWidth="210.0" style="-fx-border-color: blue; -fx-background-color: white;" />
+            <Label fx:id="txtErreur" layoutX="247.0" layoutY="158.0" prefHeight="28.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: blue;" />
+            <Button fx:id="btnConnexion" layoutX="247.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#btnConnexionClicked" prefHeight="36.0" prefWidth="309.0" style="-fx-border-color: blue; -fx-background-color: white;" text="Se connecter " />
          </children>
       </AnchorPane>
    </left>

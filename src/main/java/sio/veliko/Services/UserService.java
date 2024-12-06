@@ -13,6 +13,9 @@ public class UserService {
         this.userRepository = new UserRepository();
     }
 
+    public Boolean verifierIdentifiants(String email, String password) throws SQLException {
+        return userRepository.verifierIdentifiants(email, password);
+    }
     public ArrayList<User> getAll() throws SQLException
     {
         return userRepository.getAll();

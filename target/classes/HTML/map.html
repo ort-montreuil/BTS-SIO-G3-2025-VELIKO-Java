@@ -28,73 +28,88 @@
     let macarte, markerClusters;
     let stationData = {};
 
+    // Fonction principale pour initialiser la carte
     function initMap() {
         macarte = L.map('map').setView([lat, lon], 11);
         markerClusters = L.markerClusterGroup();
 
-        // Ajouter la couche de tuiles OpenStreetMap
+        // Ajoute  OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
             minZoom: 1,
             maxZoom: 20
         }).addTo(macarte);
 
-        // Fonction pour ajouter un marqueur à la carte
-        function ajouterMarker(name, lat, lon, capacity, station_id) {
-            const marker = L.marker([lat, lon]);
-            marker.bindPopup(`<strong>Nom : ${name}</strong><br>Capacité : ${capacity}`);
-            markerClusters.addLayer(marker);
-            stationData[station_id] = marker; // Associer le marqueur à l'ID de la station
-        }
-
-        // Charger les stations
-        function loadStations() {
-            const apiUrl = "http://localhost:9042/api/stations";
-
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(stations => {
-                    stations.forEach(station => {
-                        const { name, lat, lon, capacity, station_id } = station;
-                        ajouterMarker(name, lat, lon, capacity, station_id);
-                    });
-                    macarte.addLayer(markerClusters);
-                    loadStatus(); // Charger les statuts des vélos
-                })
-
-        }
-
-        // Charger le statut des vélos
-        function loadStatus() {
-            const apiUrl1 = "http://localhost:9042/api/stations/status";
-
-            fetch(apiUrl1)
-                .then(response => response.json())
-                .then(statusList => {
-                    statusList.forEach(status => {
-                        const { station_id, num_bikes_available_types } = status;
-
-                        // Vérifier que le marqueur existe pour cette station
-                        if (stationData[station_id]) {
-                            const marker = stationData[station_id];
-
-                            // Récupérer les vélos mécaniques et électriques
-                            const mechanical = num_bikes_available_types[0].mechanical ;
-                            const ebike = num_bikes_available_types[1].ebike ;
-
-                            // Mettre à jour le contenu du popup
-                            const popupContent = marker.getPopup().getContent();
-                            marker.bindPopup(`${popupContent}<br>Vélos mécaniques : ${mechanical}<br>Vélos électriques : ${ebike}`).openPopup();
-                        }
-                    });
-                })
-
-        }
-
-        // Lancer le chargement
+        // Charge les données des stations et leurs statuts
         loadStations();
     }
 
+    // Fonction pour ajouter un marqueur
+    function ajouterMarker(name, lat, lon, capacity, station_id) {
+        const marker = L.marker([lat, lon]);
+        marker.bindPopup(`<strong>Nom : ${name}</strong><br>Capacité : ${capacity}`);
+        markerClusters.addLayer(marker);
+        stationData[station_id] = marker; // Associer le marqueur à l'ID de la station
+    }
+
+    // Charge les stations
+    function loadStations() {
+        const apiUrl = "http://localhost:9042/api/stations";
+
+        return fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur lors du chargement des stations : ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(stations => {
+                stations.forEach(station => {
+                    const { name, lat, lon, capacity, station_id } = station;
+                    ajouterMarker(name, lat, lon, capacity, station_id);
+                });
+                macarte.addLayer(markerClusters);
+
+                loadStatus();
+            })
+            .catch(error => console.error("Erreur dans loadStations:", error));
+    }
+
+    // Charge le statut des vélos
+    function loadStatus() {
+        const apiUrl1 = "http://localhost:9042/api/stations/status";
+
+        fetch(apiUrl1)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erreur lors du chargement des statuts : ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(statusList => {
+                statusList.forEach(status => {
+                    const { station_id, num_bikes_available_types } = status;
+
+                    // Vérifier que le marqueur existe pour cette station
+                    if (stationData[station_id]) {
+                        const marker = stationData[station_id];
+
+                        // Récupére les vélos mécaniques et électriques
+                        const mechanical = num_bikes_available_types[0].mechanical;
+                        const ebike = num_bikes_available_types[1].ebike;
+
+                        // Mettre à jour le contenu du popup
+                        const popupContent = marker.getPopup().getContent();
+                        marker.bindPopup(`${popupContent}<br>Vélos mécaniques : ${mechanical}<br>Vélos électriques : ${ebike}`);
+                    }
+                });
+            })
+            .catch(error => console.error("Erreur dans loadStatus:", error));
+
+
+    }
+
+    // Initialisation de la carte
     window.onload = initMap;
 </script>
 </body>
