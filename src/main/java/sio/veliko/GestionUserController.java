@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import sio.veliko.Controller.UserController;
@@ -17,6 +14,7 @@ import sio.veliko.Tools.DataSourceProvider;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GestionUserController implements Initializable {
@@ -118,19 +116,55 @@ public class GestionUserController implements Initializable {
             tvUser.setItems(FXCollections.observableArrayList(userController.getAll()));
             tvUser.refresh();
 
+        }
+    }
 
+    @javafx.fxml.FXML
+    public void btnSupprimerClicked(Event event) throws SQLException {
+
+            // Vérification si un utilisateur est sélectionné
+            if (tvUser.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de saisie");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez sélectionner un utilisateur.");
+                alert.showAndWait();
+                return; // Quitte la méthode si aucun utilisateur n'est sélectionné
+            }
+
+            // Récupération de l'utilisateur sélectionné
+            int idUser = tvUser.getSelectionModel().getSelectedItem().getIdUser();
+
+            // Création d'une alerte de confirmation
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation de suppression");
+            confirmationAlert.setHeaderText("Supprimer l'utilisateur");
+            confirmationAlert.setContentText("Êtes-vous sûr de vouloir supprimer cet utilisateur ?");
+
+            // Affichage de l'alerte et gestion de la réponse de l'utilisateur
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Si l'utilisateur confirme la suppression
+                userController.supprimerUser(idUser);
+                tvUser.getItems().remove(tvUser.getSelectionModel().getSelectedItem());
+                // Affiche une alerte de succès après suppression
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("L'utilisateur a été supprimé avec succès.");
+                successAlert.showAndWait();
+
+            } else {
+                // Si l'utilisateur annule l'action
+                Alert cancelAlert = new Alert(Alert.AlertType.INFORMATION);
+                cancelAlert.setTitle("Annulation");
+                cancelAlert.setHeaderText(null);
+                cancelAlert.setContentText("La suppression a été annulée.");
+                cancelAlert.showAndWait();
+            }
         }
 
 
-    }
-
-
-
-
-
-    @javafx.fxml.FXML
-    public void btnSupprimerClicked(Event event) {
-    }
 
     @javafx.fxml.FXML
     public void btnModifierClicked(Event event) {

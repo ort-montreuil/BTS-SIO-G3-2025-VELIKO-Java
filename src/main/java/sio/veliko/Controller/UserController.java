@@ -24,4 +24,7 @@ public class UserController {
     public void debloquerUser(int idUser) throws SQLException {
         userService.debloquerUser(idUser);
     }
+    public void supprimerUser(int idUser) throws SQLException {
+        userService.supprimerUser(idUser);
+    }
 }

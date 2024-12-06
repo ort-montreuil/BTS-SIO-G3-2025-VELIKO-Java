@@ -25,4 +25,7 @@ public class UserService {
     public void debloquerUser(int idUser) throws SQLException {
         userRepository.debloquerUser(idUser);
     }
+    public void supprimerUser(int idUser) throws SQLException {
+        userRepository.supprimerUser(idUser);
+    }
 }
