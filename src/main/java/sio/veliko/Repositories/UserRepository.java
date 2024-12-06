@@ -75,7 +75,7 @@ public class UserRepository implements RepositoryInterface<User,Integer>{
                 "    prenom = 'anonymous',\n" +
                 "    token = NULL\n" +
                 "WHERE id = ?;\n");
-        preparedStatement.setInt(1,idUser);
+        preparedStatement.setInt(1, idUser);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }

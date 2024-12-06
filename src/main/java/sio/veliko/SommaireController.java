@@ -39,7 +39,7 @@ public class SommaireController {
         if (actionEvent.getSource() == btnUser) {
             FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("gestionuser-view.fxml"));
             Scene scene = null;
-            try {
+             try {
                 scene = new Scene(fxmlLoader.load());
             } catch (IOException e) {
                 throw new RuntimeException(e);

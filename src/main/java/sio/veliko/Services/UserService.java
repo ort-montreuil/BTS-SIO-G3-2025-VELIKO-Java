@@ -18,7 +18,7 @@ public class UserService {
         return userRepository.getAll();
     }
 
-    public void bloquerUser(int idUser) throws SQLException {
+    public void  bloquerUser(int idUser) throws SQLException {
          userRepository.bloquerUser(idUser);
     }
 

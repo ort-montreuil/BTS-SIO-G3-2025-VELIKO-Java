@@ -55,7 +55,7 @@ public class User {
         return isBlocked;
     }
 
-    public void setIsBlocked(String isBlocked) {
+    public void  setIsBlocked(String isBlocked) {
         this.isBlocked = isBlocked;
     }
 

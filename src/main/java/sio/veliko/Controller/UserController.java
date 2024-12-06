@@ -15,7 +15,7 @@ public class UserController {
     }
     public ArrayList<User> getAll() throws SQLException
     {
-        return userService.getAll();
+         return userService.getAll();
     }
 
     public void bloquerUser(int idUser) throws SQLException {

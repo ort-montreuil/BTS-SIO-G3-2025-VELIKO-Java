@@ -152,7 +152,7 @@ public class GestionUserController implements Initializable {
                 successAlert.setTitle("Succès");
                 successAlert.setHeaderText(null);
                 successAlert.setContentText("L'utilisateur a été supprimé avec succès.");
-                successAlert.showAndWait();
+                 successAlert.showAndWait();
 
             } else {
                 // Si l'utilisateur annule l'action

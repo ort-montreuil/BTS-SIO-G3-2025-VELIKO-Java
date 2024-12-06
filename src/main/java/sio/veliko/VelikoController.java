@@ -27,7 +27,7 @@ public class VelikoController implements Initializable {
     @FXML
     private Label txtErreur;
     @FXML
-    private TextField txtMotDePasse;
+     private TextField txtMotDePasse;
     @FXML
     private Button btnConnexion;
 

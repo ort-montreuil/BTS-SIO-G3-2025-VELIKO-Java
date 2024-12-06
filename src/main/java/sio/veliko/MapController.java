@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 public class MapController implements Initializable {
     @javafx.fxml.FXML
-    private WebView wvMap;
+     private WebView wvMap;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
