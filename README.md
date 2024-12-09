@@ -8,7 +8,11 @@ Ce projet Java permet à l'utilisateur de se connecter via un compte préconfigu
 Avant de lancer ce projet Java, vous devez avoir configuré le projet PHP associé. Assurez-vous d'avoir Symfony installé et suivez les étapes ci-dessous :
 
 1. **Cloner le projet PHP :**  
-   Récupérez le dépôt Git du projet PHP et installez les dépendances nécessaires.
+   Récupérez le dépôt Git du projet PHP et installez les dépendances nécessaires avec la commande.
+`Composer install`
+
+
+
 
 2. **Lancer les fixtures Symfony :**  
    Exécutez la commande suivante dans le répertoire du projet Symfony pour insérer les données nécessaires dans la base de données :

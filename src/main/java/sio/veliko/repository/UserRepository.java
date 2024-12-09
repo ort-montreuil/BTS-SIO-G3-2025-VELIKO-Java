@@ -37,4 +37,11 @@ public class UserRepository {
         rs.close();
         return result;
     }
+
+    public void forcerChangerMdp (String email) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("update user set last_password_change = 1 where user.email = ?");
+        ps.setString(1, email);
+        ps.executeUpdate();
+        ps.close();
+    }
 }
