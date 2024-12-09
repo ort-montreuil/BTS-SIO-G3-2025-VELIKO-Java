@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.SommaireController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="849.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.SommaireController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +18,7 @@
                   <Image url="@../../Image/Capture d'écran 2024-11-14 231038.png" />
                </image>
             </ImageView>
-            <Label prefHeight="102.0" prefWidth="715.0" style="-fx-background-color: white;" text="              Espace Administrateur : Sommaire" textFill="DODGERBLUE">
+            <Label fx:id="hvNavbar" prefHeight="102.0" prefWidth="715.0" style="-fx-background-color: white;" text="              Espace Administrateur : Sommaire" textFill="DODGERBLUE">
                <font>
                   <Font size="26.0" />
                </font>
@@ -27,7 +27,7 @@
        </HBox>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #1E90FFFF;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="apSommaire" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #1E90FFFF;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnMap" layoutX="129.0" layoutY="73.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="87.0" prefWidth="206.0" style="-fx-background-color: #1E90FFFF; -fx-border-color: white;" text="GESTION MAP" textFill="WHITE">
                <font>

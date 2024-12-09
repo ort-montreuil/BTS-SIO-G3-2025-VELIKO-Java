@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <title>Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css"/>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css"/>
     <style>
         html, body {
             margin: 0;
             height: 100%;
         }
+
         #map {
             width: 100%;
             height: 100%;
@@ -41,7 +43,7 @@
         }).addTo(macarte);
 
         // Charge les données des stations et leurs statuts
-        loadStations();
+        loadStationsAndStatus();
     }
 
     // Fonction pour ajouter un marqueur
@@ -53,10 +55,11 @@
     }
 
     // Charge les stations
-    function loadStations() {
-        const apiUrl = "http://localhost:9042/api/stations";
+    function loadStationsAndStatus() {
+        const apiStations = "http://localhost:9042/api/stations";
+        const apiStationsStatus = "http://localhost:9042/api/stations/status";
 
-        return fetch(apiUrl)
+        return fetch(apiStations)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Erreur lors du chargement des stations : ${response.statusText}`);
@@ -68,18 +71,10 @@
                     const { name, lat, lon, capacity, station_id } = station;
                     ajouterMarker(name, lat, lon, capacity, station_id);
                 });
-                macarte.addLayer(markerClusters);
 
-                loadStatus();
+                // Charger les statuts après avoir chargé les stations
+                return fetch(apiStationsStatus);
             })
-            .catch(error => console.error("Erreur dans loadStations:", error));
-    }
-
-    // Charge le statut des vélos
-    function loadStatus() {
-        const apiUrl1 = "http://localhost:9042/api/stations/status";
-
-        fetch(apiUrl1)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Erreur lors du chargement des statuts : ${response.statusText}`);
@@ -94,23 +89,31 @@
                     if (stationData[station_id]) {
                         const marker = stationData[station_id];
 
-                        // Récupére les vélos mécaniques et électriques
+                        // Récupère les vélos mécaniques et électriques
                         const mechanical = num_bikes_available_types[0].mechanical;
                         const ebike = num_bikes_available_types[1].ebike;
 
                         // Mettre à jour le contenu du popup
                         const popupContent = marker.getPopup().getContent();
-                        marker.bindPopup(`${popupContent}<br>Vélos mécaniques : ${mechanical}<br>Vélos électriques : ${ebike}`);
+                        marker.bindPopup(
+                            `${popupContent}<br>Vélos mécaniques : ${mechanical}<br>Vélos électriques : ${ebike}`
+                        );
                     }
                 });
+
+                // Ajouter les clusters à la carte après avoir tout chargé
+                macarte.addLayer(markerClusters);
             })
-            .catch(error => console.error("Erreur dans loadStatus:", error));
-
-
+            .catch(error => {
+                console.error("Erreur dans loadStationsAndStatus :", error);
+            });
     }
 
     // Initialisation de la carte
     window.onload = initMap;
+
+
+
 </script>
 </body>
 </html>

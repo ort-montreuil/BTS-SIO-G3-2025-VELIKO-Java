@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sio.veliko.Controller.UserController;
 import sio.veliko.Tools.DataSourceProvider;
@@ -32,6 +33,10 @@ public class VelikoController implements Initializable {
     private UserController userController;
     @FXML
     private TextField txtMotDePasse;
+    @FXML
+    private AnchorPane apConnexion;
+    @FXML
+    private Label hvNavbar;
 
 
     @FXML

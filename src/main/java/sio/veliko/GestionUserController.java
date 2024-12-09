@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import sio.veliko.Controller.UserController;
 import sio.veliko.Models.User;
@@ -41,6 +42,10 @@ public class GestionUserController implements Initializable {
     private TableColumn<User,String> tcBloquer;
     @FXML
     private AnchorPane apUser;
+    @FXML
+    private ImageView imgLogo;
+    @FXML
+    private Label hbNavbar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
