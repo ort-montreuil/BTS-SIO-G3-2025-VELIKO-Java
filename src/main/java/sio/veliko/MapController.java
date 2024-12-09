@@ -1,6 +1,7 @@
-package sio.veliko.Controller;
+package sio.veliko;
 
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -10,7 +11,11 @@ import java.util.ResourceBundle;
 
 public class MapController implements Initializable {
     @javafx.fxml.FXML
-    private WebView wvMap;
+     private WebView wvMap;
+    @javafx.fxml.FXML
+    private ImageView imgLogo;
+    @javafx.fxml.FXML
+    private Label hvNavbar;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

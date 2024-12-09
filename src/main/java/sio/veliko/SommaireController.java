@@ -1,10 +1,13 @@
-package sio.veliko.Controller;
+package sio.veliko;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sio.veliko.VelikoApplication;
 
@@ -18,6 +21,12 @@ public class SommaireController {
     private Button btnDashboard;
     @javafx.fxml.FXML
     private Button btnUser;
+    @javafx.fxml.FXML
+    private AnchorPane apSommaire;
+    @javafx.fxml.FXML
+    private Label hvNavbar;
+    @javafx.fxml.FXML
+    private ImageView imgLogo;
 
     @javafx.fxml.FXML
     public void menuClicked(ActionEvent actionEvent) {
@@ -34,10 +43,12 @@ public class SommaireController {
             stage.setTitle("Administrateur");
             stage.setScene(scene);
             stage.show();
-        } else if (actionEvent.getSource() == btnUser) {
-            FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("user-view.fxml"));
+
+        }
+        if (actionEvent.getSource() == btnUser) {
+            FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("gestionuser-view.fxml"));
             Scene scene = null;
-            try {
+             try {
                 scene = new Scene(fxmlLoader.load());
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -46,8 +57,9 @@ public class SommaireController {
             stage.setTitle("Administrateur");
             stage.setScene(scene);
             stage.show();
+
         }
-        else if (actionEvent.getSource() == btnDashboard) {
+        if (actionEvent.getSource() == btnDashboard) {
 
         }
     }

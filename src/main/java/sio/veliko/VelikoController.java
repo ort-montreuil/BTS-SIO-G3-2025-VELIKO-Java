@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sio.veliko.Controller.UserController;
 import sio.veliko.Tools.DataSourceProvider;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class VelikoController implements Initializable {
 
+    DataSourceProvider cnx;
+
     @FXML
     private ImageView imgLogo;
     @FXML
@@ -27,10 +30,13 @@ public class VelikoController implements Initializable {
     private Label txtErreur;
     @FXML
     private Button btnConnexion;
-    DataSourceProvider cnx;
     private UserController userController;
     @FXML
-    private PasswordField txtMotDePasse;
+    private AnchorPane apConnexion;
+    @FXML
+    private Label hvNavbar;
+    @FXML
+    private PasswordField txtMotdepasse;
 
 
     @FXML
@@ -40,14 +46,14 @@ public class VelikoController implements Initializable {
             txtErreur.setText("Saisir votre login");
         }
 
-        else if (txtMotDePasse.getText().isEmpty())
+        else if (txtMotdepasse.getText().isEmpty())
         {
             txtErreur.setText("saisir votre mdp");
         }
         else
         {
             try {
-                if (userController.verifierIdentifiants(txtLogin.getText(), txtMotDePasse.getText())) {
+                if (userController.verifierIdentifiants(txtLogin.getText(), txtMotdepasse.getText())) {
                     FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("sommaire-view.fxml"));
                     Scene scene = new Scene(fxmlLoader.load());
                     Stage stage = new Stage();
@@ -68,7 +74,7 @@ public class VelikoController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-    }}
+        }}
 
 
     @Override
