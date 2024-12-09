@@ -13,7 +13,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="102.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgLogo" fitHeight="102.0" fitWidth="143.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../Image/Capture d'écran 2024-11-14 231038.png" />
                </image>
@@ -27,7 +27,7 @@
        </HBox>
    </top>
    <center>
-      <AnchorPane fx:id="apSommaire" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: #1E90FFFF;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="apSommaire" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnMap" layoutX="129.0" layoutY="73.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="87.0" prefWidth="206.0" style="-fx-background-color: #1E90FFFF; -fx-border-color: white;" text="GESTION MAP" textFill="WHITE">
                <font>

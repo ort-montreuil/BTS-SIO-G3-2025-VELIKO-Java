@@ -104,14 +104,12 @@
                 // Ajouter les clusters à la carte après avoir tout chargé
                 macarte.addLayer(markerClusters);
             })
-            .catch(error => {
-                console.error("Erreur dans loadStationsAndStatus :", error);
-            });
     }
 
-    // Initialisation de la carte
-    window.onload = initMap;
-
+    //initialisation de la map
+    window.onload = function () {
+        initMap();
+    };
 
 
 </script>

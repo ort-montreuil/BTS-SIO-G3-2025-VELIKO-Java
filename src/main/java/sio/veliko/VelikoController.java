@@ -32,11 +32,11 @@ public class VelikoController implements Initializable {
     private Button btnConnexion;
     private UserController userController;
     @FXML
-    private TextField txtMotDePasse;
-    @FXML
     private AnchorPane apConnexion;
     @FXML
     private Label hvNavbar;
+    @FXML
+    private PasswordField txtMotdepasse;
 
 
     @FXML
@@ -46,14 +46,14 @@ public class VelikoController implements Initializable {
             txtErreur.setText("Saisir votre login");
         }
 
-        else if (txtMotDePasse.getText().isEmpty())
+        else if (txtMotdepasse.getText().isEmpty())
         {
             txtErreur.setText("saisir votre mdp");
         }
         else
         {
             try {
-                if (userController.verifierIdentifiants(txtLogin.getText(), txtMotDePasse.getText())) {
+                if (userController.verifierIdentifiants(txtLogin.getText(), txtMotdepasse.getText())) {
                     FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("sommaire-view.fxml"));
                     Scene scene = new Scene(fxmlLoader.load());
                     Stage stage = new Stage();

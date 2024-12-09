@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sio.veliko.VelikoApplication;
@@ -24,6 +25,8 @@ public class SommaireController {
     private AnchorPane apSommaire;
     @javafx.fxml.FXML
     private Label hvNavbar;
+    @javafx.fxml.FXML
+    private ImageView imgLogo;
 
     @javafx.fxml.FXML
     public void menuClicked(ActionEvent actionEvent) {

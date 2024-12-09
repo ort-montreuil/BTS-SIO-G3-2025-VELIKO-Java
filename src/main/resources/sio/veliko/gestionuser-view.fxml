@@ -29,7 +29,7 @@
       </HBox>
    </top>
    <center>
-      <AnchorPane fx:id="apUser" prefHeight="298.0" prefWidth="641.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="apUser" prefHeight="298.0" prefWidth="641.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" BorderPane.alignment="CENTER">
          <children>
             <TableView fx:id="tvUser" layoutX="40.0" layoutY="41.0" prefHeight="200.0" prefWidth="699.0">
               <columns>
@@ -41,15 +41,15 @@
 
               </columns>
             </TableView>
-            <Button fx:id="btnSupprimer" layoutX="160.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btnSupprimerClicked" prefHeight="55.0" prefWidth="109.0" style="-fx-background-color: #1e90ff;" text="Supprimer" textFill="WHITE">
+            <Button fx:id="btnSupprimer" layoutX="116.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btnSupprimerClicked" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Supprimer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnBloquer" layoutX="343.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btnBloquerClicked" prefHeight="55.0" prefWidth="109.0" style="-fx-background-color: #1e90ff;" text="Bloquer" textFill="WHITE">
+            <Button fx:id="btnBloquer" layoutX="324.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btnBloquerClicked" prefHeight="55.0" prefWidth="153.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Bloquer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnModifier" layoutX="521.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btnModifierClicked" prefHeight="56.0" prefWidth="167.0" style="-fx-background-color: #1e90ff;" text="Modifier Mdp" textFill="WHITE">
+            <Button fx:id="btnModifier" layoutX="521.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#btnModifierClicked" prefHeight="56.0" prefWidth="191.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Modifier Mot de passe " textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>
