@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class UserController {
 
-    private final UserService userService;
+    UserService userService;
 
     public UserController(){
         this.userService = new UserService();
@@ -30,5 +30,9 @@ public class UserController {
     }
     public void supprimerUser(int idUser) throws SQLException {
         userService.supprimerUser(idUser);
+    }
+
+    public void forcerMdpChange(int idUser) throws SQLException {
+        userService.forcerMdpChange(idUser);
     }
 }

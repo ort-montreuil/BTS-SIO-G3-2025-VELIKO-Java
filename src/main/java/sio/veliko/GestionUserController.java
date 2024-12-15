@@ -172,10 +172,44 @@ public class GestionUserController implements Initializable {
 
 
     @javafx.fxml.FXML
-    public void btnModifierClicked(Event event) {
-    }
+    public void btnModifierClicked(Event event) throws SQLException {
+        if (tvUser.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez selectionner un utilisateur");
+            alert.showAndWait();
+        }
+        else {
+
+            User userSelectionner = tvUser.getSelectionModel().getSelectedItem();
+            int idUser = userSelectionner.getIdUser();
+
+
+                userController.forcerMdpChange(idUser);
+
+                // Afficher une confirmation de réussite
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Succès");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("obligation de changer mdp activé.");
+                successAlert.showAndWait();
+
+
+            }
+            tvUser.setItems(FXCollections.observableArrayList(userController.getAll()));
+            tvUser.refresh();
+
+        }
+
+
 
     @Deprecated
     public void btnEnregistrerClicked(Event event) {
+
+
+
+
+
     }
 }

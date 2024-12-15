@@ -60,10 +60,11 @@ public class UserRepository implements RepositoryInterface<User,Integer>{
         return result;
     }
 
+
     @Override
     public ArrayList<User> getAll() throws SQLException {
         ArrayList<User> user = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT id , nom , prenom , email , is_blocked FROM user WHERE roles = '[]'; ");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id , nom , prenom , email , is_blocked FROM user WHERE roles = '[\"ROLE_USER\"]'; ");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next())
         {
@@ -98,4 +99,18 @@ public class UserRepository implements RepositoryInterface<User,Integer>{
         preparedStatement.close();
     }
 
+    public void forcerMdpChange (int idUser) throws SQLException {
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE user SET boolean_changer_mdp = 1 WHERE id = ?");
+        preparedStatement.setInt(1,idUser);
+        preparedStatement.executeUpdate();
+        preparedStatement.close();
+    }
+
+
+
+
+
+
 }
+
+

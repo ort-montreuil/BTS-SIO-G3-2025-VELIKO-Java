@@ -31,4 +31,7 @@ public class UserService {
     public void supprimerUser(int idUser) throws SQLException {
         userRepository.supprimerUser(idUser);
     }
+    public void forcerMdpChange(int idUser) throws SQLException {
+        userRepository.forcerMdpChange(idUser);
+    }
 }
