@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="528.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.VelikoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="571.0" prefWidth="1276.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.VelikoController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -20,7 +20,7 @@
                   <Image url="@../../Image/Capture d'écran 2024-11-14 231038.png" />
                </image>
             </ImageView>
-            <Label fx:id="hvNavbar" prefHeight="100.0" prefWidth="639.0" style="-fx-border-color: white; -fx-background-color: white;" text="               Espace Administrateur : Connexion" textFill="DODGERBLUE">
+            <Label fx:id="hvNavbar" prefHeight="100.0" prefWidth="1145.0" style="-fx-border-color: white; -fx-background-color: white;" text="                                                    Espace Administrateur : Connexion" textFill="DODGERBLUE">
                <font>
                   <Font size="26.0" />
                </font>
@@ -28,25 +28,24 @@
          </children>
       </HBox>
    </top>
-   <left>
-      <AnchorPane fx:id="apConnexion" prefHeight="428.0" prefWidth="790.0" style="-fx-border-color: #1e90ff; -fx-background-color: #e7f1f5;" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane fx:id="apConnexion" prefHeight="460.0" prefWidth="1157.0" style="-fx-border-color: #1e90ff; -fx-background-color: #e7f1f5;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="253.0" layoutY="61.0" prefHeight="30.0" prefWidth="109.0" text="Email : ">
+            <Label layoutX="516.0" layoutY="99.0" prefHeight="30.0" prefWidth="109.0" text="Email : ">
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <Label layoutX="253.0" layoutY="102.0" text="Mot de passe : ">
+            <Label layoutX="516.0" layoutY="152.0" text="Mot de passe : ">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <TextField fx:id="txtLogin" layoutX="393.0" layoutY="62.0" prefHeight="25.0" prefWidth="210.0" style="-fx-border-color: #1e90ff; -fx-background-color: white;" />
-            <Label fx:id="txtErreur" layoutX="247.0" layoutY="158.0" prefHeight="28.0" prefWidth="310.0" style="-fx-background-color: white; -fx-border-color: #1e90ff;" />
-            <Button fx:id="btnConnexion" layoutX="247.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#btnConnexionClicked" prefHeight="36.0" prefWidth="309.0" style="-fx-border-color: #1e90ff; -fx-background-color: #1e90ff;" text="Se connecter " textFill="WHITE">
+            <TextField fx:id="txtLogin" layoutX="687.0" layoutY="100.0" prefHeight="25.0" prefWidth="210.0" style="-fx-border-color: #1e90ff; -fx-background-color: white;" />
+            <Button fx:id="btnConnexion" layoutX="548.0" layoutY="210.0" mnemonicParsing="false" onMouseClicked="#btnConnexionClicked" prefHeight="52.0" prefWidth="311.0" style="-fx-border-color: #1e90ff; -fx-background-color: #1e90ff;" text="Se connecter " textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <PasswordField fx:id="txtMotdepasse" layoutX="393.0" layoutY="103.0" prefHeight="25.0" prefWidth="209.0" style="-fx-background-color: WHITE; -fx-border-color: #1e90ff;" />
+            <PasswordField fx:id="txtMotdepasse" layoutX="687.0" layoutY="152.0" prefHeight="25.0" prefWidth="209.0" style="-fx-background-color: WHITE; -fx-border-color: #1e90ff;" />
          </children>
       </AnchorPane>
-   </left>
+   </center>
 </BorderPane>

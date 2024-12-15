@@ -35,7 +35,7 @@
         macarte = L.map('map').setView([lat, lon], 11);
         markerClusters = L.markerClusterGroup();
 
-        // Ajoute  OpenStreetMap
+        // Ajoute OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
             attribution: 'données © <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
             minZoom: 1,
@@ -50,68 +50,57 @@
     function ajouterMarker(name, lat, lon, capacity, station_id) {
         const marker = L.marker([lat, lon]);
         marker.bindPopup(`<strong>Nom : ${name}</strong><br>Capacité : ${capacity}`);
+        stationData[station_id] = {
+            marker: marker,
+            popupContent: `<strong>Nom : ${name}</strong><br>Capacité : ${capacity}`
+        }; // Associer le marqueur et son contenu au station_id
         markerClusters.addLayer(marker);
-        stationData[station_id] = marker; // Associer le marqueur à l'ID de la station
     }
 
-    // Charge les stations
+    // Charger les stations et leurs statuts
     function loadStationsAndStatus() {
         const apiStations = "http://localhost:9042/api/stations";
         const apiStationsStatus = "http://localhost:9042/api/stations/status";
 
-        return fetch(apiStations)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erreur lors du chargement des stations : ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(stations => {
+        Promise.all([
+            fetch(apiStations).then(response => response.json()),
+            fetch(apiStationsStatus).then(response => response.json())
+        ])
+            .then(([stations, statusList]) => {
+                // Charger les stations
                 stations.forEach(station => {
                     const { name, lat, lon, capacity, station_id } = station;
                     ajouterMarker(name, lat, lon, capacity, station_id);
                 });
 
-                // Charger les statuts après avoir chargé les stations
-                return fetch(apiStationsStatus);
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erreur lors du chargement des statuts : ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(statusList => {
+                // Charger les statuts et associer aux stations
                 statusList.forEach(status => {
                     const { station_id, num_bikes_available_types } = status;
 
-                    // Vérifier que le marqueur existe pour cette station
+                    // Vérifier que la station existe dans stationData
                     if (stationData[station_id]) {
-                        const marker = stationData[station_id];
+                        const { marker, popupContent } = stationData[station_id];
 
-                        // Récupère les vélos mécaniques et électriques
-                        const mechanical = num_bikes_available_types[0].mechanical;
-                        const ebike = num_bikes_available_types[1].ebike;
+                        // Récupérer les vélos mécaniques et électriques
+                        const mechanical = num_bikes_available_types[0].mechanical ;
+                        const ebike = num_bikes_available_types[1].ebike ;
 
                         // Mettre à jour le contenu du popup
-                        const popupContent = marker.getPopup().getContent();
-                        marker.bindPopup(
-                            `${popupContent}<br>Vélos mécaniques : ${mechanical}<br>Vélos électriques : ${ebike}`
-                        );
+                        const updatedPopup = `${popupContent}<br>Vélos mécaniques : ${mechanical}<br>Vélos électriques : ${ebike}`;
+                        marker.bindPopup(updatedPopup);
                     }
                 });
 
                 // Ajouter les clusters à la carte après avoir tout chargé
                 macarte.addLayer(markerClusters);
             })
+            .catch(error => console.error(error));
     }
 
-    //initialisation de la map
+    // Initialisation de la carte
     window.onload = function () {
         initMap();
     };
-
-
 </script>
 </body>
 </html>

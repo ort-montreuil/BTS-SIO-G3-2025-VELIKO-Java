@@ -175,7 +175,4 @@ public class GestionUserController implements Initializable {
     public void btnModifierClicked(Event event) {
     }
 
-    @Deprecated
-    public void btnEnregistrerClicked(Event event) {
-    }
 }
