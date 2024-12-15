@@ -36,6 +36,10 @@ Avant de lancer ce projet Java, vous devez avoir configuré le projet PHP associ
    - Cliquez sur le bouton + (Ajouter).
    - Sélectionnez JARS or Directories.
    - Ajoutez le fichier .jar présent dans le dossier lib du projet.
+   
+4. **Remarque sur l'affichage des stations (MAP)**
+
+     - Lors de l’utilisation de la fonctionnalité MAP, les stations peuvent mettre du temps à s’afficher. Si le problème persiste, appuyer plusieurs fois sur le bouton pour forcer le rendu de l’affichage. 
 
 
 
