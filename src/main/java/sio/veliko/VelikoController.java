@@ -27,8 +27,6 @@ public class VelikoController implements Initializable {
     @FXML
     private TextField txtLogin;
     @FXML
-    private Label txtErreur;
-    @FXML
     private Button btnConnexion;
     private UserController userController;
     @FXML
@@ -43,12 +41,20 @@ public class VelikoController implements Initializable {
     public void btnConnexionClicked(Event event) {
         if(txtLogin.getText().isEmpty())
         {
-            txtErreur.setText("Saisir votre login");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de connexion");
+            alert.setContentText("Saisir votre email");
+            alert.showAndWait();
         }
 
         else if (txtMotdepasse.getText().isEmpty())
         {
-            txtErreur.setText("saisir votre mdp");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Erreur de connexion");
+            alert.setContentText("Saisir votre mot de passe");
+            alert.showAndWait();
         }
         else
         {
