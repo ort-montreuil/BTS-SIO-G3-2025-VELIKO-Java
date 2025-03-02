@@ -10,11 +10,11 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="1267.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.MapController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imgLogo" fitHeight="99.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Image/Capture d'écran 2024-11-14 231038.png" />
+                  <Image url="@../../Image/Capture_d_écran_2025-01-28_220539-removebg-preview.png" />
                </image>
             </ImageView>
             <Label fx:id="hvNavbar" prefHeight="100.0" prefWidth="1163.0" style="-fx-background-color: white;" text="                                                  Espace Administrative : Map" textFill="DODGERBLUE">

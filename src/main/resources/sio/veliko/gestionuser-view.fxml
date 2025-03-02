@@ -13,11 +13,11 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.GestionUserController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="imgLogo" fitHeight="102.0" fitWidth="138.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../Image/Capture d'écran 2024-11-14 231038.png" />
+                  <Image url="@../../Image/Capture_d_écran_2025-01-28_220539-removebg-preview.png" />
                </image>
             </ImageView>
             <Label fx:id="hbNavbar" prefHeight="102.0" prefWidth="1173.0" style="-fx-background-color: WHITE;" text="                                               Espace Administrateur : Gestion Utilisateur " textFill="DODGERBLUE">

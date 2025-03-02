@@ -60,7 +60,17 @@ public class SommaireController {
 
         }
         if (actionEvent.getSource() == btnDashboard) {
-
+            FXMLLoader fxmlLoader = new FXMLLoader(VelikoApplication.class.getResource("dashboard-view.fxml"));
+            Scene scene = null;
+            try {
+                scene = new Scene(fxmlLoader.load());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = new Stage();
+            stage.setTitle("Administrateur");
+            stage.setScene(scene);
+            stage.show();
         }
     }
 
