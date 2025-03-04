@@ -1,5 +1,6 @@
 package sio.veliko.Repositories;
 
+import sio.veliko.Models.User;
 import sio.veliko.Tools.DataSourceProvider;
 
 import java.sql.*;
@@ -27,16 +28,21 @@ public class GraphiqueRepository {
         return datas;
     }
 
-    /*
-    public ArrayList<> getLesMeilleursUsers() throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT user.id, user.nom, user.prenom, COUNT(reservation.id_user_id) AS nbResa FROM user INNER JOIN reservation ON user.id = reservation.id_user_id GROUP BY user.id, user.nom, user.prenom HAVING nbResa = ( SELECT MAX(nbResa) FROM ( SELECT COUNT(*) AS nbResa FROM reservation GROUP BY reservation.id_user_id ) AS topResa ); ");
-        ResultSet resultSet = preparedStatement.executeQuery();
 
+    public ArrayList<User> getLesMeilleursUsers() throws SQLException {
+        ArrayList<User> lesMeilleurs = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("call lesMeilleursClients");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next())
+        {
+            lesMeilleurs.add(new User(resultSet.getString(1),resultSet.getString(2),resultSet.getInt(3)));
+        }
         preparedStatement.close();
         resultSet.close();
 
+        return lesMeilleurs;
     }
 
-     */
+
 
 }

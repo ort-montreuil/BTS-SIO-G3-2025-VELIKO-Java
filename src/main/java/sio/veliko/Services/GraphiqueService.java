@@ -1,5 +1,6 @@
 package sio.veliko.Services;
 
+import sio.veliko.Models.User;
 import sio.veliko.Repositories.GraphiqueRepository;
 
 import java.sql.SQLException;
@@ -17,5 +18,8 @@ public class GraphiqueService {
         return graphiqueRepository.getDatasGraphique1();
     }
 
+    public ArrayList<User> getLesMeilleursUsers() throws SQLException {
+        return graphiqueRepository.getLesMeilleursUsers();
+    }
 }
 

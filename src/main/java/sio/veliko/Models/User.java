@@ -7,6 +7,7 @@ public class User {
     private String prenomUser;
     private String emailUser;
     private String isBlocked;
+    private int nbResa;
 
 
     public User(int idUser, String nomUser, String prenomUser, String emailUser, String isBlocked) {
@@ -15,6 +16,12 @@ public class User {
         this.prenomUser = prenomUser;
         this.emailUser = emailUser;
         this.isBlocked = isBlocked;
+    }
+    public User(String nomUser , String prenomUser , int nbResa )
+    {
+        this.nomUser = nomUser;
+        this.prenomUser = prenomUser;
+        this.nbResa = nbResa;
 
     }
 
@@ -59,6 +66,13 @@ public class User {
         this.isBlocked = isBlocked;
     }
 
+    public int getNbResa() {
+        return nbResa;
+    }
+
+    public void setNbResa(int nbResa) {
+        this.nbResa = nbResa;
+    }
 }
 
 

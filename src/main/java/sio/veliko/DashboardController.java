@@ -71,7 +71,8 @@ public class DashboardController implements Initializable {
             throw new RuntimeException(e);
         }
         try {
-            afficherGraph1();
+            afficherStat1();
+            afficherStat2();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -104,7 +105,7 @@ public class DashboardController implements Initializable {
 
     }
 
-    public void  afficherGraph1() throws SQLException {
+    public void  afficherStat1() throws SQLException {
 
         graph1.getData().clear();
         serieGraph1 = new XYChart.Series<>();
@@ -123,5 +124,11 @@ public class DashboardController implements Initializable {
 
     }
 
+    public void afficherStat2() throws SQLException {
 
+        tcNomMeilleursUsers.setCellValueFactory(new PropertyValueFactory<>("nomUser"));
+        tcPrenomMeilleursUsers.setCellValueFactory(new PropertyValueFactory<>("prenomUser"));
+        tcNbReservations.setCellValueFactory(new PropertyValueFactory<>("nbResa"));
+        tvMeilleursUsers.setItems(FXCollections.observableArrayList(graphiqueController.getLesMeilleursUsers()));
+    }
 }
