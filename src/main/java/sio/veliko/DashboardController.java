@@ -123,7 +123,5 @@ public class DashboardController implements Initializable {
 
     }
 
-    @javafx.fxml.FXML
-    public void menuClicked(ActionEvent actionEvent) {
-    }
+
 }
