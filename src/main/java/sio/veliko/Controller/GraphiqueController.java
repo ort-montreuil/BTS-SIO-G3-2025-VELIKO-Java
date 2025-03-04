@@ -3,6 +3,7 @@ package sio.veliko.Controller;
 import sio.veliko.Services.GraphiqueService;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GraphiqueController {
@@ -15,4 +16,5 @@ public class GraphiqueController {
     public HashMap<String,Integer>getDataGraphique1() throws SQLException {
         return graphiqueService.getDatasGraphique1();
     }
+
 }

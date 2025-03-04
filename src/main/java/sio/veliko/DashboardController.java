@@ -1,16 +1,24 @@
 package sio.veliko;
 
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import sio.veliko.Controller.GraphiqueController;
 import sio.veliko.Tools.DataSourceProvider;
 
+import java.lang.classfile.Label;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -24,22 +32,38 @@ public class DashboardController implements Initializable {
     HashMap<String,Integer> datasGraphique;
     XYChart.Series<String,Integer> serieGraph1;
 
+    private int currentPage = 0;
+    private AnchorPane[] pages;
+
     @javafx.fxml.FXML
     private ImageView imgLogo;
-    @javafx.fxml.FXML
-    private ImageView imgFleche1;
-    @javafx.fxml.FXML
-    private ImageView imgFleche2;
     @javafx.fxml.FXML
     private BarChart graph1;
     @javafx.fxml.FXML
     private AnchorPane apGraph1;
+    @javafx.fxml.FXML
+    private TableColumn tcPrenomMeilleursUsers;
+    @javafx.fxml.FXML
+    private TableColumn tcNomMeilleursUsers;
+    @javafx.fxml.FXML
+    private AnchorPane apTv;
+    @javafx.fxml.FXML
+    private TableView tvMeilleursUsers;
+    @javafx.fxml.FXML
+    private TableColumn tcNbReservations;
+    @javafx.fxml.FXML
+    private TableView tv2;
+    @javafx.fxml.FXML
+    private AnchorPane ap3;
+    @javafx.fxml.FXML
+    private Button btnDroite;
+    @javafx.fxml.FXML
+    private Button btnGauche;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        apGraph1.toFront();
         graphiqueController = new GraphiqueController();
         try {
             datasGraphique =  graphiqueController.getDataGraphique1();
@@ -51,6 +75,33 @@ public class DashboardController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        pages = new AnchorPane[]{apGraph1, apTv,ap3};
+
+        // Afficher la première page
+        showPage(0);
+
+        // Ajouter les événements aux boutons
+        btnDroite.setOnAction(e -> changePage(1));
+        btnGauche.setOnAction(e -> changePage(-1));
+
+    }
+
+    private void changePage(int direction) {
+        int newPage = currentPage + direction;
+        if (newPage >= 0 && newPage < pages.length) {
+            showPage(newPage);
+        }
+    }
+
+    private void showPage(int pageIndex) {
+        currentPage = pageIndex;
+
+        // Afficher la page actuelle et masquer l'autre
+        for (int i = 0; i < pages.length; i++) {
+            pages[i].setVisible(i == currentPage);
+        }
+
     }
 
     public void  afficherGraph1() throws SQLException {
@@ -69,8 +120,10 @@ public class DashboardController implements Initializable {
             t.setStyle("-fx-background-color:#3D9ADA");
             Tooltip.install(entry.getNode(), t);
         }
-        NumberAxis yAxis = (NumberAxis) graph1.getYAxis();
-        yAxis.setLabel("Capacité");
 
+    }
+
+    @javafx.fxml.FXML
+    public void menuClicked(ActionEvent actionEvent) {
     }
 }
