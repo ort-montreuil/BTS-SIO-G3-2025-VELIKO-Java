@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.GestionUserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="1291.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.GestionUserController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
    <right>
       <AnchorPane fx:id="apUser" prefHeight="445.0" prefWidth="1308.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tvUser" layoutX="287.0" layoutY="59.0" prefHeight="200.0" prefWidth="731.0">
+            <TableView fx:id="tvUser" layoutX="287.0" layoutY="59.0" prefHeight="200.0" prefWidth="731.0" style="-fx-background-color: white;">
               <columns>
                 <TableColumn fx:id="tcId" prefWidth="75.0" text="ID " />
                 <TableColumn fx:id="tcNom" prefWidth="91.33332061767578" text="NOM" />
@@ -41,15 +41,15 @@
 
               </columns>
             </TableView>
-            <Button fx:id="btnSupprimer" layoutX="325.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btnSupprimerClicked" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Supprimer" textFill="WHITE">
+            <Button fx:id="btnSupprimer" layoutX="325.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btnSupprimerClicked" prefHeight="55.0" prefWidth="166.0" style="-fx-background-color: #1e90ff; -fx-border-color: black;" text="Supprimer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnBloquer" layoutX="563.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btnBloquerClicked" prefHeight="55.0" prefWidth="153.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Bloquer" textFill="WHITE">
+            <Button fx:id="btnBloquer" layoutX="569.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btnBloquerClicked" prefHeight="55.0" prefWidth="175.0" style="-fx-background-color: #008000FF; -fx-border-color: black;" text="Bloquer" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Button fx:id="btnModifier" layoutX="798.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btnModifierClicked" prefHeight="56.0" prefWidth="191.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Modifier Mot de passe " textFill="WHITE">
+            <Button fx:id="btnModifier" layoutX="798.0" layoutY="316.0" mnemonicParsing="false" onMouseClicked="#btnModifierClicked" prefHeight="54.0" prefWidth="191.0" style="-fx-background-color: #C47D53; -fx-border-color: black;" text="Modifier Mot de passe " textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>

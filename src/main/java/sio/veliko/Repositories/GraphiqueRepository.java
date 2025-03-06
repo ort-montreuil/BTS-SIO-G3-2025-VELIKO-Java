@@ -65,6 +65,41 @@ public class GraphiqueRepository {
         resultSet.close();
         return total;
     }
+    public HashMap<String,Integer> getDataGraph2() throws SQLException {
+        HashMap<String,Integer> datas = new HashMap<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT type_velo , COUNT(type_velo) as nb FROM reservation GROUP by type_velo ORDER BY nb DESC; ");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            datas.put(resultSet.getString("type_velo"),resultSet.getInt("nb"));
+        }
+        preparedStatement.close();
+        resultSet.close();
+
+        return datas;
+    }
+    public int nbTotalMecanique() throws SQLException {
+        int total = 0 ;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(type_velo) as total FROM reservation WHERE type_velo = \"mecanique\"; ");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()){
+            total = resultSet.getInt("total");
+        }
+        preparedStatement.close();
+        resultSet.close();
+        return total;
+    }
+    public int nbTotalElectrique() throws SQLException {
+        int total = 0 ;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(type_velo) as total FROM reservation WHERE type_velo = \"electrique\"; ");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()){
+            total = resultSet.getInt("total");
+        }
+        preparedStatement.close();
+        resultSet.close();
+        return total;
+    }
+
 
 
 

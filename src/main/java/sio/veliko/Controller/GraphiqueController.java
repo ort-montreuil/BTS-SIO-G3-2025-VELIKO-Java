@@ -27,4 +27,13 @@ public class GraphiqueController {
     public int nbTotalCapacite() throws SQLException {
         return graphiqueService.nbTotalCapacite();
     }
+    public HashMap<String,Integer> getDataGraph2() throws SQLException {
+        return graphiqueService.getDataGraph2();
+    }
+    public int nbTotalMecanique() throws SQLException {
+        return graphiqueService.nbTotalMecanique();
+    }
+    public int nbTotalElectrique() throws SQLException {
+        return graphiqueService.nbTotalElectrique();
+    }
 }

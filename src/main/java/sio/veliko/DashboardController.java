@@ -1,6 +1,7 @@
 package sio.veliko;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -19,6 +20,7 @@ import java.lang.classfile.Label;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -28,6 +30,7 @@ public class DashboardController implements Initializable {
 
     HashMap<String,Integer> datasGraphique;
     XYChart.Series<String,Integer> serieGraph1;
+
 
     private int currentPage = 0;
     private AnchorPane[] pages;
@@ -58,6 +61,14 @@ public class DashboardController implements Initializable {
     private TextField txtTotalEmplacements;
     @javafx.fxml.FXML
     private TextField txtnbReservations;
+    @javafx.fxml.FXML
+    private PieChart graph2;
+    @javafx.fxml.FXML
+    private TextField txtMecanique;
+    @javafx.fxml.FXML
+    private TextField txtelectrique;
+    @javafx.fxml.FXML
+    private AnchorPane apGraph2;
 
 
     @Override
@@ -73,11 +84,12 @@ public class DashboardController implements Initializable {
             afficherStat1();
             afficherStat2();
             afficherStat3();
+            afficherStat4();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        pages = new AnchorPane[]{apGraph1, apTv,ap3};
+        pages = new AnchorPane[]{apGraph1, apTv,ap3,apGraph2};
 
         // Afficher la première page
         showPage(0);
@@ -130,10 +142,32 @@ public class DashboardController implements Initializable {
         tcPrenomMeilleursUsers.setCellValueFactory(new PropertyValueFactory<>("prenomUser"));
         tcNbReservations.setCellValueFactory(new PropertyValueFactory<>("nbResa"));
         tvMeilleursUsers.setItems(FXCollections.observableArrayList(graphiqueController.getLesMeilleursUsers()));
+
     }
     public void  afficherStat3() throws SQLException {
 
        txtnbReservations.setText(String.valueOf(graphiqueController.nbTotalStations()));
        txtTotalEmplacements.setText(String.valueOf(graphiqueController.nbTotalCapacite()));
+
+    }
+    public void afficherStat4() throws SQLException {
+
+        graph2.getData().clear();
+
+        ObservableList<PieChart.Data> dataGraph2 = FXCollections.observableArrayList();
+        datasGraphique = graphiqueController.getDataGraph2();
+
+        for(String nomTypeVelo : datasGraphique.keySet()){
+            graph2.getData().add(new PieChart.Data(nomTypeVelo,datasGraphique.get(nomTypeVelo)));
+        }
+        for (PieChart.Data entry : graph2.getData()) {
+            Tooltip t = new Tooltip(entry.getPieValue()+ " : "+entry.getName());
+            t.setStyle("-fx-background-color:#3D9ADA");
+            Tooltip.install(entry.getNode(), t);
+        }
+
+        txtMecanique.setText(String.valueOf(graphiqueController.nbTotalMecanique()));
+        txtelectrique.setText(String.valueOf(graphiqueController.nbTotalElectrique()));
+
     }
 }
