@@ -43,6 +43,30 @@ public class GraphiqueRepository {
         return lesMeilleurs;
     }
 
+    public int nbTotalStations() throws SQLException {
+        int total=0 ;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT Count(*) as totalStations FROM `station`; ");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()){
+            total = resultSet.getInt("totalStations");
+        }
+        preparedStatement.close();
+        resultSet.close();
+        return total;
+    }
+    public int nbTotalCapacite() throws SQLException {
+        int total=0 ;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT SUM(capacity) as totalCapacite FROM `station`; ");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if(resultSet.next()){
+            total = resultSet.getInt("totalCapacite");
+        }
+        preparedStatement.close();
+        resultSet.close();
+        return total;
+    }
+
+
 
 
 }

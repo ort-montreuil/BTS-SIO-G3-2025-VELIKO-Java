@@ -21,4 +21,10 @@ public class GraphiqueController {
     public ArrayList<User> getLesMeilleursUsers() throws SQLException {
         return graphiqueService.getLesMeilleursUsers();
     }
+    public int nbTotalStations() throws SQLException {
+        return graphiqueService.nbTotalStations();
+    }
+    public int nbTotalCapacite() throws SQLException {
+        return graphiqueService.nbTotalCapacite();
+    }
 }

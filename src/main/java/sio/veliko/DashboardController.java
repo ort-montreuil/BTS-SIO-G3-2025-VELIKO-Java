@@ -7,10 +7,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -52,13 +49,15 @@ public class DashboardController implements Initializable {
     @javafx.fxml.FXML
     private TableColumn tcNbReservations;
     @javafx.fxml.FXML
-    private TableView tv2;
-    @javafx.fxml.FXML
     private AnchorPane ap3;
     @javafx.fxml.FXML
     private Button btnDroite;
     @javafx.fxml.FXML
     private Button btnGauche;
+    @javafx.fxml.FXML
+    private TextField txtTotalEmplacements;
+    @javafx.fxml.FXML
+    private TextField txtnbReservations;
 
 
     @Override
@@ -73,6 +72,7 @@ public class DashboardController implements Initializable {
         try {
             afficherStat1();
             afficherStat2();
+            afficherStat3();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -130,5 +130,10 @@ public class DashboardController implements Initializable {
         tcPrenomMeilleursUsers.setCellValueFactory(new PropertyValueFactory<>("prenomUser"));
         tcNbReservations.setCellValueFactory(new PropertyValueFactory<>("nbResa"));
         tvMeilleursUsers.setItems(FXCollections.observableArrayList(graphiqueController.getLesMeilleursUsers()));
+    }
+    public void  afficherStat3() throws SQLException {
+
+       txtnbReservations.setText(String.valueOf(graphiqueController.nbTotalStations()));
+       txtTotalEmplacements.setText(String.valueOf(graphiqueController.nbTotalCapacite()));
     }
 }

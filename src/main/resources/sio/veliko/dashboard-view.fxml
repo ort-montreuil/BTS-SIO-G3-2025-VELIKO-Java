@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,7 +37,7 @@
          <children>
             <AnchorPane fx:id="apGraph1" layoutY="-1.0" prefHeight="474.0" prefWidth="1253.0" style="-fx-background-color: white;">
                <children>
-                  <BarChart fx:id="graph1" layoutX="220.0" layoutY="88.0" prefHeight="355.0" prefWidth="786.0">
+                  <BarChart fx:id="graph1" layoutX="184.0" layoutY="88.0" prefHeight="355.0" prefWidth="881.0">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -53,7 +54,7 @@
             </AnchorPane>
             <AnchorPane fx:id="apTv" prefHeight="472.0" prefWidth="1253.0" style="-fx-background-color: white;">
                <children>
-                  <TableView fx:id="tvMeilleursUsers" layoutX="252.0" layoutY="112.0" prefHeight="304.0" prefWidth="750.0">
+                  <TableView fx:id="tvMeilleursUsers" layoutX="233.0" layoutY="112.0" prefHeight="304.0" prefWidth="806.0">
                     <columns>
                       <TableColumn fx:id="tcNomMeilleursUsers" prefWidth="262.0" text="Nom" />
                       <TableColumn fx:id="tcPrenomMeilleursUsers" prefWidth="235.0" text="Prenom" />
@@ -69,28 +70,35 @@
             </AnchorPane>
             <AnchorPane fx:id="ap3" prefHeight="472.0" prefWidth="1253.0" style="-fx-background-color: white;">
                <children>
-                  <TableView fx:id="tv2" layoutX="331.0" layoutY="120.0" prefHeight="260.0" prefWidth="626.0">
-                    <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
-                    </columns>
-                  </TableView>
+                  <Label layoutX="400.0" layoutY="158.0" text="Total des stations : " textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtnbReservations" layoutX="661.0" layoutY="158.0" prefHeight="25.0" prefWidth="236.0" style="-fx-border-color: #1e90ff; -fx-background-color: white;" />
+                  <Label layoutX="400.0" layoutY="231.0" prefHeight="30.0" prefWidth="218.0" text="Total emplacements :" textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtTotalEmplacements" layoutX="662.0" layoutY="232.0" prefHeight="25.0" prefWidth="233.0" style="-fx-border-color: #1e90ff; -fx-background-color: white;" />
+                  <Label layoutX="385.0" layoutY="228.0" />
                </children>
             </AnchorPane>
-            <Button fx:id="btnGauche" layoutX="32.0" layoutY="166.0" mnemonicParsing="false"  prefHeight="158.0" prefWidth="157.0" style="-fx-background-color: WHITE;">
-               <graphic>
-                  <ImageView fitHeight="105.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Image/next-button - Copie.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnDroite" layoutX="1061.0" layoutY="157.0" mnemonicParsing="false"  prefHeight="158.0" prefWidth="156.0" style="-fx-background-color: WHITE;">
+            <Button fx:id="btnDroite" layoutX="1069.0" layoutY="134.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="156.0" style="-fx-background-color: WHITE;">
                <graphic>
                   <ImageView fitHeight="118.0" fitWidth="111.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Image/next-button.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnGauche" layoutX="23.0" layoutY="134.0" mnemonicParsing="false" prefHeight="158.0" prefWidth="157.0" style="-fx-background-color: WHITE;">
+               <graphic>
+                  <ImageView fitHeight="105.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Image/next-button - Copie.png" />
                      </image>
                   </ImageView>
                </graphic>
