@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GraphiqueRepository {
+public class GraphiqueRepository  {
 
     private Connection connection;
 
@@ -16,9 +16,10 @@ public class GraphiqueRepository {
         this.connection = DataSourceProvider.getCnx();
     }
 
+    // les stations avec le plus grands emplacements
     public HashMap<String,Integer> getDatasGraphique1() throws SQLException {
         HashMap<String,Integer> datas = new HashMap<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT name, capacity FROM station ORDER BY capacity DESC LIMIT 5; "
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT name, capacity FROM station ORDER BY capacity DESC; "
         );
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()){
@@ -30,20 +31,22 @@ public class GraphiqueRepository {
     }
 
 
-    public ArrayList<User> getLesMeilleursUsers() throws SQLException {
-        ArrayList<User> lesMeilleurs = new ArrayList<>();
-        PreparedStatement preparedStatement = connection.prepareStatement("call lesMeilleursClients");
+    // les users les plus actifs
+    public HashMap<String,Integer> getUserLesPlusActifs() throws SQLException {
+        HashMap<String,Integer>lesPlusActifs = new HashMap<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT user.email, COUNT(reservation.id) AS nb_reservations FROM reservation JOIN user ON reservation.id_user_id = user.id GROUP BY user.email ORDER BY nb_reservations DESC LIMIT 5; ");
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next())
         {
-            lesMeilleurs.add(new User(resultSet.getString(1),resultSet.getString(2),resultSet.getInt(3)));
+            lesPlusActifs.put(resultSet.getString(1),resultSet.getInt(2));
         }
         preparedStatement.close();
         resultSet.close();
 
-        return lesMeilleurs;
+        return lesPlusActifs;
     }
 
+    // nb total de stations
     public int nbTotalStations() throws SQLException {
         int total=0 ;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT Count(*) as totalStations FROM `station`; ");
@@ -55,6 +58,8 @@ public class GraphiqueRepository {
         resultSet.close();
         return total;
     }
+
+    // nb total de capacité/emplacements
     public int nbTotalCapacite() throws SQLException {
         int total=0 ;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT SUM(capacity) as totalCapacite FROM `station`; ");
@@ -66,6 +71,8 @@ public class GraphiqueRepository {
         resultSet.close();
         return total;
     }
+
+    // type de velos le plus utilisé
     public HashMap<String,Integer> getDataGraph2() throws SQLException {
         HashMap<String,Integer> datas = new HashMap<>();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT type_velo , COUNT(type_velo) as nb FROM reservation GROUP by type_velo ORDER BY nb DESC; ");
@@ -78,6 +85,8 @@ public class GraphiqueRepository {
 
         return datas;
     }
+
+    // nb total velos mecanique
     public int nbTotalMecanique() throws SQLException {
         int total = 0 ;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(type_velo) as total FROM reservation WHERE type_velo = \"mecanique\"; ");
@@ -89,6 +98,8 @@ public class GraphiqueRepository {
         resultSet.close();
         return total;
     }
+
+    // nb total velos electrique
     public int nbTotalElectrique() throws SQLException {
         int total = 0 ;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(type_velo) as total FROM reservation WHERE type_velo = \"electrique\"; ");
@@ -100,7 +111,8 @@ public class GraphiqueRepository {
         resultSet.close();
         return total;
     }
-    public HashMap<String, Integer> getNbReservations() {
+
+    public HashMap<String, Integer> getDatasGraph3() {
         HashMap<String, Integer> datas = new HashMap<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "SELECT s.name, COUNT(r.id) AS nb_reservations FROM station s \n" +
@@ -118,13 +130,13 @@ public class GraphiqueRepository {
         return datas;
     }
 
-    // nb stations
-    public int getLesStations() {
+    // compter le nb de reservations
+    public int getNbTotalReservations() {
         int nbStations = 0;
-        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) FROM station");
+        try (PreparedStatement ps = connection.prepareStatement("SELECT Count(reservation.id) as totalReservation FROM reservation; ");
              ResultSet rs = ps.executeQuery()) {
             if (rs.next()) {
-                nbStations = rs.getInt(1);
+                nbStations = rs.getInt("totalReservation");
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -146,7 +158,7 @@ public class GraphiqueRepository {
         return nbUser;
     }
 
-    // date_resa par date
+    // nb total de reservations par date
     public ArrayList<Reservation> getNbResa() {
         ArrayList<Reservation> tableauDate = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
@@ -165,24 +177,16 @@ public class GraphiqueRepository {
         return tableauDate;
     }
 
-    // nb user actif
-    public HashMap<String, Integer> getUserPlusActif() {
-        HashMap<String, Integer> datas = new HashMap<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT reservation.id, user.email, reservation.date_reservation, reservation.type_velo, " +
-                        "reservation.station_id_depart, reservation.station_id_arrivee " +
-                        "FROM reservation JOIN user ON reservation.id_user = user.id limit 5");
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-
-            while (resultSet.next()) {
-                // Modify accordingly if you need user-specific stats
-                datas.put(resultSet.getString("email"), resultSet.getInt("id"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+    public ArrayList<User> getUsersMemeStationDep() throws SQLException {
+        ArrayList<User> lesUsers = new ArrayList<>();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT u.nom, u.prenom, r.station_depart, COUNT(r.id) AS nbResa FROM user u JOIN reservation r ON u.id = r.id_user_id GROUP BY u.id, r.station_depart HAVING COUNT(r.id) > 1 ORDER BY nbResa DESC; ");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()){
+            lesUsers.add(new User(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4)));
         }
-        return datas;
+        return lesUsers;
     }
+
 
 
 

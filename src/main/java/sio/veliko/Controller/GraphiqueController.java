@@ -19,8 +19,8 @@ public class GraphiqueController {
         return graphiqueService.getDatasGraphique1();
     }
 
-    public ArrayList<User> getLesMeilleursUsers() throws SQLException {
-        return graphiqueService.getLesMeilleursUsers();
+    public HashMap<String,Integer> getUserLesPlusActifs()throws SQLException {
+        return graphiqueService.getUserLesPlusActifs();
     }
     public int nbTotalStations() throws SQLException {
         return graphiqueService.nbTotalStations();
@@ -38,28 +38,24 @@ public class GraphiqueController {
         return graphiqueService.nbTotalElectrique();
     }
 
-    public HashMap<String, Integer> getNbReservations() {
-        return graphiqueService.getNbReservations();
+    public HashMap<String, Integer> getDataGraph3() {
+        return graphiqueService.getDataGraph3();
     }
-
-//    public HashMap<String,Integer> getReserationParPeriode()
-// {
-    // return statistiquesServices.getReserationParPeriode();
-    //}
 
     public ArrayList<Reservation>getNbResa() throws SQLException {
         return graphiqueService.getNbResa();
     }
 
-    public int getLesStations() {
-        return graphiqueService.getLesStations();
+    public int getNbTotalReservations() {
+        return graphiqueService.getNbTotalReservations();
     }
 
     public int getLesUser() {
         return graphiqueService.getLesUser();
     }
 
-    public HashMap<String, Integer> getUserPlusActif() {
-        return graphiqueService.getUserPlusActif();
+    public ArrayList<User> getUsersMemeStationDep() throws SQLException {
+        return graphiqueService.getUsersMemeStationDep();
     }
+
 }

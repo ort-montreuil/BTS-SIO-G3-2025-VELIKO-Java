@@ -9,6 +9,7 @@ public class User {
     private String isBlocked;
     private int nbResa;
 
+    private String stationDepart;
 
     public User(int idUser, String nomUser, String prenomUser, String emailUser, String isBlocked) {
         this.idUser = idUser;
@@ -17,14 +18,13 @@ public class User {
         this.emailUser = emailUser;
         this.isBlocked = isBlocked;
     }
-    public User(String nomUser , String prenomUser , int nbResa )
-    {
+
+    public User(String nomUser , String prenomUser , String stationDepart , int nbResa){
         this.nomUser = nomUser;
         this.prenomUser = prenomUser;
+        this.stationDepart = stationDepart;
         this.nbResa = nbResa;
-
     }
-
     public int getIdUser() {
         return idUser;
     }
@@ -72,6 +72,14 @@ public class User {
 
     public void setNbResa(int nbResa) {
         this.nbResa = nbResa;
+    }
+
+    public String getStationDepart() {
+        return stationDepart;
+    }
+
+    public void setStationDepart(String stationDepart) {
+        this.stationDepart = stationDepart;
     }
 }
 

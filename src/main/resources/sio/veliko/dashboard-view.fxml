@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="1253.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.DashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="1253.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.DashboardController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -30,52 +30,52 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Button fx:id="btnStatsM" mnemonicParsing="false" onMouseClicked="#StatsClicked" prefHeight="50.0" prefWidth="450.0" style="-fx-background-color: white;" text="Statistiques de base" textFill="DODGERBLUE" />
          </children>
       </HBox>
    </top>
    <center>
       <AnchorPane prefHeight="488.0" prefWidth="1259.0" style="-fx-background-color: #e7f1f5;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="ap5" prefHeight="479.0" prefWidth="1253.0">
+            <AnchorPane fx:id="apStat5" prefHeight="478.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
                <children>
-                  <BarChart layoutX="369.0" layoutY="26.0" title="graph2">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </BarChart>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="ap6" prefHeight="477.0" prefWidth="1253.0">
-               <children>
-                  <BarChart fx:id="graph3" layoutX="377.0" layoutY="39.0" title="graph1">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </BarChart>
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="ap7" prefHeight="478.0" prefWidth="1253.0">
-               <children>
-                  <TableView fx:id="tvReservation" layoutX="337.0" layoutY="62.0" prefHeight="218.0" prefWidth="474.0">
-                     <columns>
-                        <TableColumn fx:id="tcDate" prefWidth="238.4000244140625" text="Date" />
-                        <TableColumn fx:id="tcResa" minWidth="0.0" prefWidth="238.4000244140625" text="nombre de réservations" />
-                     </columns>
+                  <Label layoutX="280.0" layoutY="49.0" text=" Les Utilisateurs avec plusieurs réservations dans la même station de départ : " textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tvUsers" layoutX="287.0" layoutY="121.0" prefHeight="316.0" prefWidth="726.0">
+                    <columns>
+                      <TableColumn fx:id="tcNom" prefWidth="157.0" text="Nom" />
+                      <TableColumn fx:id="tcPrenom" prefWidth="219.0" text="Prenom" />
+                        <TableColumn fx:id="tcStationDep" prefWidth="191.0" text="Station Depart " />
+                        <TableColumn fx:id="tcNbReserv" prefWidth="158.0" text="nombre de reservation " />
+                    </columns>
                   </TableView>
-                  <Label layoutX="223.0" layoutY="372.0" prefHeight="18.0" prefWidth="114.0" text="nombre de user" />
-                  <Label layoutX="642.0" layoutY="372.0" prefHeight="18.0" prefWidth="113.0" text="nombre de stations" />
-                  <TextField fx:id="txtNbUser" layoutX="349.0" layoutY="369.0" />
-                  <TextField fx:id="txtNbStation" layoutX="766.0" layoutY="368.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apGraph1" layoutY="-1.0" prefHeight="479.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
+            <AnchorPane fx:id="apStat2" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
+               <children>
+                  <Label layoutX="481.0" layoutY="33.0" prefHeight="40.0" prefWidth="405.0" style="-fx-border-color: #1e90ff;" text=" Top 5 des Utilisateurs les plus actifs :" textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold Italic" size="22.0" />
+                     </font>
+                  </Label>
+                  <BarChart fx:id="graph3" layoutX="204.0" layoutY="83.0" prefHeight="383.0" prefWidth="863.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </BarChart>
+                  <Label layoutX="135.0" layoutY="230.0" prefHeight="39.0" prefWidth="138.0" rotate="-90.0" text="Nb Reservations" textFill="DODGERBLUE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apStat1" layoutY="-1.0" prefHeight="479.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
                <children>
                   <BarChart fx:id="graph1" layoutX="184.0" layoutY="88.0" prefHeight="355.0" prefWidth="881.0">
                      <xAxis>
@@ -92,23 +92,34 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apTv" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
+            <AnchorPane fx:id="apStat6" prefHeight="478.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
                <children>
-                  <TableView fx:id="tvMeilleursUsers" layoutX="233.0" layoutY="112.0" prefHeight="304.0" prefWidth="806.0">
+                  <TableView fx:id="tvReservations" layoutX="303.0" layoutY="96.0" prefHeight="183.0" prefWidth="722.0" style="-fx-background-color: white;">
                      <columns>
-                        <TableColumn fx:id="tcNomMeilleursUsers" prefWidth="262.0" text="Nom" />
-                        <TableColumn fx:id="tcPrenomMeilleursUsers" prefWidth="235.0" text="Prenom" />
-                        <TableColumn fx:id="tcNbReservations" prefWidth="252.0" text="Nombre de réservations" />
+                        <TableColumn fx:id="tcDate" prefWidth="375.0" text="Date" />
+                        <TableColumn fx:id="tcNbResa" prefWidth="267.0" text="Nombre de réservations" />
                      </columns>
                   </TableView>
-                  <Label layoutX="391.0" layoutY="47.0" prefHeight="40.0" prefWidth="491.0" style="-fx-border-color: #1e90ff;" text=" Les Utilisateurs avec le Plus de Réservations !" textFill="DODGERBLUE">
+                  <TextField fx:id="txtNbUser" layoutX="487.0" layoutY="325.0" style="-fx-border-color: #1e90ff;" />
+                  <TextField fx:id="txtNbReservation" layoutX="833.0" layoutY="325.0" style="-fx-border-color: #1e90ff;" />
+                  <Label layoutX="341.0" layoutY="330.0" text="Total d'utilisateurs :" textFill="DODGERBLUE">
                      <font>
-                        <Font name="System Bold Italic" size="22.0" />
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="501.0" layoutY="44.0" prefHeight="31.0" prefWidth="354.0" style="-fx-border-color: #1e90ff;" text=" Nombres de reservations par date :" textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold Italic" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="678.0" layoutY="330.0" prefHeight="17.0" prefWidth="155.0" text="Total de reservation : " textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="ap3" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
+            <AnchorPane fx:id="apStat3" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
                <children>
                   <Label layoutX="385.0" layoutY="158.0" text="Total des stations : " textFill="DODGERBLUE">
                      <font>
@@ -130,7 +141,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apGraph2" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
+            <AnchorPane fx:id="apStat4" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
                <children>
                   <PieChart fx:id="graph2" layoutX="224.0" layoutY="73.0" prefHeight="271.0" prefWidth="835.0" />
                   <TextField fx:id="txtMecanique" layoutX="427.0" layoutY="384.0" style="-fx-background-color: white; -fx-border-color: #1e90ff;" />
@@ -145,7 +156,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="362.0" layoutY="27.0" style="-fx-border-color: #1e90ff;" text=" Le type de vélo le plus utilisé avec leur nombre total respective : " textFill="DODGERBLUE">
+                  <Label layoutX="343.0" layoutY="27.0" style="-fx-border-color: #1e90ff;" text=" Le type de vélo le plus utilisé avec leur nombre total respective : " textFill="DODGERBLUE">
                      <font>
                         <Font name="System Bold Italic" size="20.0" />
                      </font>

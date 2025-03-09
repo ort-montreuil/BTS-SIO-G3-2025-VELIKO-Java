@@ -26,6 +26,7 @@ import java.lang.classfile.Label;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.ResourceBundle;
 
@@ -36,6 +37,7 @@ public class DashboardController implements Initializable {
 
     HashMap<String,Integer> datasGraphique;
     XYChart.Series<String,Integer> serieGraph1;
+    XYChart.Series<String,Integer> serieGraph2;
 
 
     private int currentPage = 0;
@@ -45,20 +47,6 @@ public class DashboardController implements Initializable {
     private ImageView imgLogo;
     @javafx.fxml.FXML
     private BarChart graph1;
-    @javafx.fxml.FXML
-    private AnchorPane apGraph1;
-    @javafx.fxml.FXML
-    private TableColumn tcPrenomMeilleursUsers;
-    @javafx.fxml.FXML
-    private TableColumn tcNomMeilleursUsers;
-    @javafx.fxml.FXML
-    private AnchorPane apTv;
-    @javafx.fxml.FXML
-    private TableView tvMeilleursUsers;
-    @javafx.fxml.FXML
-    private TableColumn tcNbReservations;
-    @javafx.fxml.FXML
-    private AnchorPane ap3;
     @javafx.fxml.FXML
     private Button btnDroite;
     @javafx.fxml.FXML
@@ -74,27 +62,39 @@ public class DashboardController implements Initializable {
     @javafx.fxml.FXML
     private TextField txtelectrique;
     @javafx.fxml.FXML
-    private AnchorPane apGraph2;
-    @javafx.fxml.FXML
-    private Button btnStatsM;
-    @javafx.fxml.FXML
-    private BarChart graph3;
-    @javafx.fxml.FXML
-    private TableColumn tcResa;
-    @javafx.fxml.FXML
-    private AnchorPane ap6;
-    @javafx.fxml.FXML
     private TextField txtNbUser;
-    @javafx.fxml.FXML
-    private AnchorPane ap5;
-    @javafx.fxml.FXML
-    private AnchorPane ap7;
-    @javafx.fxml.FXML
-    private TableView tvReservation;
     @javafx.fxml.FXML
     private TableColumn tcDate;
     @javafx.fxml.FXML
-    private TextField txtNbStation;
+    private TableView tvReservations;
+    @javafx.fxml.FXML
+    private TableColumn tcNbResa;
+    @javafx.fxml.FXML
+    private AnchorPane apStat2;
+    @javafx.fxml.FXML
+    private AnchorPane apStat1;
+    @javafx.fxml.FXML
+    private AnchorPane apStat5;
+    @javafx.fxml.FXML
+    private AnchorPane apStat4;
+    @javafx.fxml.FXML
+    private AnchorPane apStat3;
+    @javafx.fxml.FXML
+    private AnchorPane apStat6;
+    @javafx.fxml.FXML
+    private TextField txtNbReservation;
+    @javafx.fxml.FXML
+    private TableColumn tcNom;
+    @javafx.fxml.FXML
+    private TableColumn tcPrenom;
+    @javafx.fxml.FXML
+    private TableColumn tcStationDep;
+    @javafx.fxml.FXML
+    private TableView tvUsers;
+    @javafx.fxml.FXML
+    private TableColumn tcNbReserv;
+    @javafx.fxml.FXML
+    private BarChart graph3;
 
 
     @Override
@@ -107,15 +107,17 @@ public class DashboardController implements Initializable {
             throw new RuntimeException(e);
         }
         try {
-            afficherStat1();
-            afficherStat2();
-            afficherStat3();
-            afficherStat4();
+            afficherStat1(); //station
+            afficherStat2(); //user
+            afficherStat3(); //station
+            afficherStat4(); //reservation
+            afficherStat5(); //user
+            afficherStat6(); //reservation
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        pages = new AnchorPane[]{apGraph1, apTv,ap3,apGraph2};
+        pages = new AnchorPane[]{apStat1,apStat3,apStat2,apStat5,apStat4,apStat6};
 
         // Afficher la première page
         showPage(0);
@@ -143,6 +145,7 @@ public class DashboardController implements Initializable {
 
     }
 
+    // les stations avec le plus grands emplacements (station)
     public void  afficherStat1() throws SQLException {
 
         graph1.getData().clear();
@@ -162,20 +165,34 @@ public class DashboardController implements Initializable {
 
     }
 
+    //les users avec le plus de reservations (users)
     public void afficherStat2() throws SQLException {
 
-        tcNomMeilleursUsers.setCellValueFactory(new PropertyValueFactory<>("nomUser"));
-        tcPrenomMeilleursUsers.setCellValueFactory(new PropertyValueFactory<>("prenomUser"));
-        tcNbReservations.setCellValueFactory(new PropertyValueFactory<>("nbResa"));
-        tvMeilleursUsers.setItems(FXCollections.observableArrayList(graphiqueController.getLesMeilleursUsers()));
+        graph3.getData().clear();
+        serieGraph2 = new XYChart.Series<>();
+        serieGraph2.setName("Nom des utilisateurs");
+        for(String valeur : graphiqueController.getUserLesPlusActifs().keySet())
+        {
+            serieGraph2.getData().add(new XYChart.Data<>(valeur,graphiqueController.getUserLesPlusActifs().get(valeur)));
+        }
+        graph3.getData().add(serieGraph2);
 
+        for (XYChart.Data<String,Integer> entry : serieGraph2.getData()) {
+            Tooltip t = new Tooltip(entry.getYValue() + " : " + entry.getXValue());
+            t.setStyle("-fx-background-color:#3D9ADA");
+            Tooltip.install(entry.getNode(), t);
+        }
     }
+
+    // le nb total de stations et de capacité (station)
     public void  afficherStat3() throws SQLException {
 
        txtnbReservations.setText(String.valueOf(graphiqueController.nbTotalStations()));
        txtTotalEmplacements.setText(String.valueOf(graphiqueController.nbTotalCapacite()));
 
     }
+
+    // le type de velo le plus utilisé avec leur nb total respective (reservation)
     public void afficherStat4() throws SQLException {
 
         graph2.getData().clear();
@@ -197,17 +214,35 @@ public class DashboardController implements Initializable {
 
     }
 
-    @javafx.fxml.FXML
-    public void StatsClicked(Event event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sio/veliko/stats.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Statistics");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    //les users qui ont reserver plusieurs fois dans la meme station (user)
+    public void afficherStat5() throws SQLException {
+
+        tcNom.setCellValueFactory(new PropertyValueFactory<>("nomUser"));
+        tcPrenom.setCellValueFactory(new PropertyValueFactory<>("prenomUser"));
+        tcStationDep.setCellValueFactory(new PropertyValueFactory<>("stationDepart"));
+        tcNbReserv.setCellValueFactory(new PropertyValueFactory<>("nbResa"));
+        tvUsers.setItems(FXCollections.observableArrayList(graphiqueController.getUsersMemeStationDep()));
+
+
     }
+
+    // nb de reservations par jour avec le nb de user total et nb de stations total (reservation)
+    public  void afficherStat6(){
+        // Population graph2
+        tcDate.setCellValueFactory(new PropertyValueFactory<>("date_resa"));
+        tcNbResa.setCellValueFactory(new PropertyValueFactory<>("nbResa"));
+        try {
+            tvReservations.setItems(FXCollections.observableArrayList(graphiqueController.getNbResa()));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        // txtNbUser et txtNbStation
+        txtNbReservation.setText(String.valueOf(graphiqueController.getNbTotalReservations()));
+        txtNbUser.setText(String.valueOf(graphiqueController.getLesUser()));
+
+    }
+
+
+
 }
