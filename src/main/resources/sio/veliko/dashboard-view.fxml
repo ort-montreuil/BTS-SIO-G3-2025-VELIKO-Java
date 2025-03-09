@@ -36,7 +36,7 @@
    <center>
       <AnchorPane prefHeight="488.0" prefWidth="1259.0" style="-fx-background-color: #e7f1f5;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="apStat5" prefHeight="478.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
+            <AnchorPane fx:id="apStat5" prefHeight="478.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
                <children>
                   <Label layoutX="280.0" layoutY="49.0" text=" Les Utilisateurs avec plusieurs réservations dans la même station de départ : " textFill="DODGERBLUE">
                      <font>
@@ -55,7 +55,7 @@
             </AnchorPane>
             <AnchorPane fx:id="apStat2" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
                <children>
-                  <Label layoutX="481.0" layoutY="33.0" prefHeight="40.0" prefWidth="405.0" style="-fx-border-color: #1e90ff;" text=" Top 5 des Utilisateurs les plus actifs :" textFill="DODGERBLUE">
+                  <Label layoutX="481.0" layoutY="33.0" prefHeight="40.0" prefWidth="331.0" style="-fx-border-color: #1e90ff;" text=" Les Utilisateurs les plus actifs :" textFill="DODGERBLUE">
                      <font>
                         <Font name="System Bold Italic" size="22.0" />
                      </font>
@@ -75,7 +75,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apStat1" layoutY="-1.0" prefHeight="479.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
+            <AnchorPane fx:id="apStat1" layoutY="-1.0" prefHeight="479.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
                <children>
                   <BarChart fx:id="graph1" layoutX="184.0" layoutY="88.0" prefHeight="355.0" prefWidth="881.0">
                      <xAxis>
@@ -92,7 +92,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apStat6" prefHeight="478.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
+            <AnchorPane fx:id="apStat6" prefHeight="478.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
                <children>
                   <TableView fx:id="tvReservations" layoutX="303.0" layoutY="96.0" prefHeight="183.0" prefWidth="722.0" style="-fx-background-color: white;">
                      <columns>
@@ -119,7 +119,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apStat3" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
+            <AnchorPane fx:id="apStat3" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
                <children>
                   <Label layoutX="385.0" layoutY="158.0" text="Total des stations : " textFill="DODGERBLUE">
                      <font>
@@ -141,7 +141,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="apStat4" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" visible="false">
+            <AnchorPane fx:id="apStat4" layoutY="-4.0" prefHeight="483.0" prefWidth="1253.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;">
                <children>
                   <PieChart fx:id="graph2" layoutX="224.0" layoutY="73.0" prefHeight="271.0" prefWidth="835.0" />
                   <TextField fx:id="txtMecanique" layoutX="427.0" layoutY="384.0" style="-fx-background-color: white; -fx-border-color: #1e90ff;" />
