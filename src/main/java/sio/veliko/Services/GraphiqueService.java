@@ -1,5 +1,6 @@
 package sio.veliko.Services;
 
+import sio.veliko.Models.Reservation;
 import sio.veliko.Models.User;
 import sio.veliko.Repositories.GraphiqueRepository;
 
@@ -36,6 +37,28 @@ public class GraphiqueService {
     public int nbTotalElectrique() throws SQLException {
         return graphiqueRepository.nbTotalElectrique();
     }
+    public HashMap<String, Integer> getNbReservations() {
+        return graphiqueRepository.getNbReservations();
+    }
 
+    // public HashMap<String, Integer> getReserationParPeriode() {
+    //       return statistiquesRepository.getReserationParPeriode();
+    // }
+
+    public ArrayList<Reservation> getNbResa() throws SQLException {
+        return graphiqueRepository.getNbResa();
+    }
+
+    public int getLesStations() {
+        return graphiqueRepository.getLesStations();
+    }
+
+    public int getLesUser() {
+        return graphiqueRepository.getLesUser();
+    }
+
+    public HashMap<String, Integer> getUserPlusActif() {
+        return graphiqueRepository.getUserPlusActif();
+    }
 }
 

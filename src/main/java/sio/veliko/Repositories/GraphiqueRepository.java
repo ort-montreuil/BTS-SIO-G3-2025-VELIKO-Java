@@ -1,5 +1,6 @@
 package sio.veliko.Repositories;
 
+import sio.veliko.Models.Reservation;
 import sio.veliko.Models.User;
 import sio.veliko.Tools.DataSourceProvider;
 
@@ -99,7 +100,89 @@ public class GraphiqueRepository {
         resultSet.close();
         return total;
     }
+    public HashMap<String, Integer> getNbReservations() {
+        HashMap<String, Integer> datas = new HashMap<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT s.name, COUNT(r.id) AS nb_reservations FROM station s \n" +
+                        "                        JOIN reservation r ON s.station_id = r.id  \n" +
+                        "                        GROUP BY s.station_id ORDER BY nb_reservations DESC LIMIT 10")) {
 
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    datas.put(resultSet.getString("name"), resultSet.getInt("nb_reservations"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return datas;
+    }
+
+    // nb stations
+    public int getLesStations() {
+        int nbStations = 0;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) FROM station");
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                nbStations = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nbStations;
+    }
+
+    // nb user
+    public int getLesUser() {
+        int nbUser = 0;
+        try (PreparedStatement ps = connection.prepareStatement("SELECT COUNT(*) FROM user");
+             ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                nbUser = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nbUser;
+    }
+
+    // date_resa par date
+    public ArrayList<Reservation> getNbResa() {
+        ArrayList<Reservation> tableauDate = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT date_reservation, COUNT(id) AS total_reservations " +
+                        "FROM reservation " +
+                        "GROUP BY date_reservation " +
+                        "ORDER BY date_reservation DESC");
+             ResultSet rs = preparedStatement.executeQuery()) {
+
+            while (rs.next()) {
+                tableauDate.add(new Reservation(rs.getDate("date_reservation"), rs.getInt("total_reservations")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tableauDate;
+    }
+
+    // nb user actif
+    public HashMap<String, Integer> getUserPlusActif() {
+        HashMap<String, Integer> datas = new HashMap<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT reservation.id, user.email, reservation.date_reservation, reservation.type_velo, " +
+                        "reservation.station_id_depart, reservation.station_id_arrivee " +
+                        "FROM reservation JOIN user ON reservation.id_user = user.id limit 5");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                // Modify accordingly if you need user-specific stats
+                datas.put(resultSet.getString("email"), resultSet.getInt("id"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return datas;
+    }
 
 
 

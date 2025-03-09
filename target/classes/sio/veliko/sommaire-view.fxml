@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.SommaireController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sio.veliko.SommaireController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -29,15 +29,15 @@
    <center>
       <AnchorPane fx:id="apSommaire" prefHeight="460.0" prefWidth="200.0" style="-fx-background-color: #e7f1f5; -fx-border-color: #1e90ff;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnMap" layoutX="359.0" layoutY="123.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="87.0" prefWidth="206.0" style="-fx-background-color: #1E90FFFF; -fx-border-color: white;" text="GESTION MAP" textFill="WHITE">
+            <Button fx:id="btnMap" layoutX="359.0" layoutY="123.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="87.0" prefWidth="206.0" style="-fx-background-color: #1E90FFFF; -fx-border-color: black;" text="GESTION MAP" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="15.0" />
                </font></Button>
-            <Button fx:id="btnUser" layoutX="744.0" layoutY="122.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="89.0" prefWidth="215.0" style="-fx-background-color: #1E90FFFF; -fx-border-color: white;" text="GESTION USER" textFill="WHITE">
+            <Button fx:id="btnUser" layoutX="744.0" layoutY="122.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="89.0" prefWidth="215.0" style="-fx-background-color: #008000FF; -fx-border-color: black;" text="GESTION USER" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="15.0" />
                </font></Button>
-            <Button fx:id="btnDashboard" layoutX="547.0" layoutY="303.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="91.0" prefWidth="209.0" style="-fx-background-color: #1E90FFFF; -fx-border-color: white;" text="DASHBOARD" textFill="WHITE">
+            <Button fx:id="btnDashboard" layoutX="547.0" layoutY="303.0" mnemonicParsing="false" onAction="#menuClicked" prefHeight="91.0" prefWidth="209.0" style="-fx-background-color: #C47D53; -fx-border-color: black;" text="DASHBOARD" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="15.0" />
                </font></Button>

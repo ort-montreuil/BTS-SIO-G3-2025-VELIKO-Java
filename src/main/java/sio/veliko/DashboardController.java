@@ -3,7 +3,11 @@ package sio.veliko;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
@@ -13,9 +17,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import sio.veliko.Controller.GraphiqueController;
 import sio.veliko.Tools.DataSourceProvider;
 
+import java.io.IOException;
 import java.lang.classfile.Label;
 import java.net.URL;
 import java.sql.SQLException;
@@ -69,6 +75,26 @@ public class DashboardController implements Initializable {
     private TextField txtelectrique;
     @javafx.fxml.FXML
     private AnchorPane apGraph2;
+    @javafx.fxml.FXML
+    private Button btnStatsM;
+    @javafx.fxml.FXML
+    private BarChart graph3;
+    @javafx.fxml.FXML
+    private TableColumn tcResa;
+    @javafx.fxml.FXML
+    private AnchorPane ap6;
+    @javafx.fxml.FXML
+    private TextField txtNbUser;
+    @javafx.fxml.FXML
+    private AnchorPane ap5;
+    @javafx.fxml.FXML
+    private AnchorPane ap7;
+    @javafx.fxml.FXML
+    private TableView tvReservation;
+    @javafx.fxml.FXML
+    private TableColumn tcDate;
+    @javafx.fxml.FXML
+    private TextField txtNbStation;
 
 
     @Override
@@ -169,5 +195,19 @@ public class DashboardController implements Initializable {
         txtMecanique.setText(String.valueOf(graphiqueController.nbTotalMecanique()));
         txtelectrique.setText(String.valueOf(graphiqueController.nbTotalElectrique()));
 
+    }
+
+    @javafx.fxml.FXML
+    public void StatsClicked(Event event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sio/veliko/stats.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Statistics");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
