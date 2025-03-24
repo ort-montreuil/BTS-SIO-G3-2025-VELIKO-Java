@@ -12,6 +12,7 @@ Avant de lancer ce projet Java, vous devez avoir configuré le projet PHP associ
    - Récupérez le dépôt Git du projet PHP 
    - Installez les dépendances nécessaires.
    - Lancez les services Docker pour configurer la base de données avec la commande suivante :
+     
    ```bash
     docker compose up -d
    ```
@@ -27,16 +28,15 @@ Avant de lancer ce projet Java, vous devez avoir configuré le projet PHP associ
    - **Mot de passe :** `Motdepasse123//`
 
 3. **Cloner projet Java en ssh ou https : **
+   
 ```bash
 git clone git@github.com:ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
 ```
 ```bash
-git clone git@github.com:ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
+git clone https://github.com/ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
 ```
 
-
-  
-5. **Ajout de la bibliothèque (.jar) au projet Java :**
+4. **Ajout de la bibliothèque (.jar) au projet Java :**
 
    Pour intégrer la bibliothèque requise dans le projet Java, procédez comme suit :
   
@@ -46,7 +46,7 @@ git clone git@github.com:ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
    - Sélectionnez JARS or Directories.
    - Ajoutez le fichier .jar présent dans le dossier lib du projet.
    
-6. **Remarque sur l'affichage des stations (MAP)**
+5. **Remarque sur l'affichage des stations (MAP)**
 
      - Lors de l’utilisation de la fonctionnalité MAP, les stations peuvent mettre du temps à s’afficher. Si le problème persiste, appuyer plusieurs fois sur le bouton pour forcer le rendu de l’affichage. 
 
