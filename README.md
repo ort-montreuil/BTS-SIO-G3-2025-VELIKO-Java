@@ -45,8 +45,15 @@ git clone https://github.com/ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
    - Cliquez sur le bouton + (Ajouter).
    - Sélectionnez JARS or Directories.
    - Ajoutez le fichier .jar présent dans le dossier lib du projet.
+
+5.**RUN le projet : **
+  - appuyer sur current file 
+  - selectionner edit configuration
+  - appuyer sur add new run configuration
+  - selectionner application
+  - selectionner le fichier veliko.application
    
-5. **Remarque sur l'affichage des stations (MAP)**
+6. **Remarque sur l'affichage des stations (MAP)**
 
      - Lors de l’utilisation de la fonctionnalité MAP, les stations peuvent mettre du temps à s’afficher. Si le problème persiste, appuyer plusieurs fois sur le bouton pour forcer le rendu de l’affichage. 
 
