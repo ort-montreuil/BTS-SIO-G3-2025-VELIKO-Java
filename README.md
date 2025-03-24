@@ -26,10 +26,15 @@ Avant de lancer ce projet Java, vous devez avoir configuré le projet PHP associ
    - **Nom d'utilisateur :** `toto@dev.com`
    - **Mot de passe :** `Motdepasse123//`
 
-3. **Cloner projet Java : **
+3. **Cloner projet Java en ssh ou https : **
 ```bash
-
+git clone git@github.com:ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
 ```
+```bash
+git clone git@github.com:ort-montreuil/BTS-SIO-G3-2025-VELIKO-Java.git
+```
+
+
   
 5. **Ajout de la bibliothèque (.jar) au projet Java :**
 
